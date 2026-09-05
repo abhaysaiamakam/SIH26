@@ -46,7 +46,10 @@ Base URL: `http://localhost:4000` (dev). All responses are JSON. All mutating en
 
 - `POST /what-if` — body `{ scenarioId, eventType, strategy?, payload }`. `eventType` is one of `CORRIDOR_UNAVAILABLE`, `NEW_CRITICAL_REQUEST`, `BLOCK_WINDOW_SHORTENED`, `ADDITIONAL_TRAIN_MOVEMENT`, `TASK_BECOMES_OVERDUE`. Runs synchronously: generates a "before" plan from the unmodified scenario, applies the event, generates an "after" plan, validates and (if valid) simulates both, and returns `{ before, after, delta }` summaries plus the persisted `scenarioEventId`. See `docs/OPTIMIZATION_MODEL.md` for exactly how each event type is applied and which are persisted vs. purely hypothetical for that one comparison.
 
-## Planned (later phases)
+## Analytics
 
-- `GET /analytics` — Phase 7 (currently the Analytics frontend page composes this itself from `GET /plans` + `GET /plans/:id`, client-side).
-- Systematic `AuditEvent` writes on every mutation — Phase 7 (the Audit frontend page currently shows real `ApprovalDecision` history as an interim view).
+- `GET /analytics?scenarioId=` — server-side comparison of the three strategies for one scenario. For each strategy with a persisted `VALIDATED`/`APPROVED` plan, returns objective value, maintenance completion (scheduled/total/ratio), critical/overdue completion counts, blocks used, bundle count, average block utilization, conflict count, and total simulated delay minutes - all derived from the actual persisted `Plan`/`PlanRevision`/`SimulationRun` rows, never hardcoded. A strategy with no plan yet for that scenario is simply omitted from the array. The response is always labeled `"label": "SYNTHETIC SCENARIO RESULT"`.
+
+## Audit
+
+- `GET /audit-events?scenarioId=&entityType=&limit=` — the full audit trail, newest first. Every mutation across the plan lifecycle writes an `AuditEvent` (`SCENARIO_CREATED`, `OPTIMIZATION_STARTED`, `PLAN_GENERATED`, `PLAN_VALIDATED`, `OPTIMIZATION_COMPLETED`, `PLAN_APPROVED`, `PLAN_REJECTED`, `REOPTIMIZATION_STARTED`, `REOPTIMIZATION_COMPLETED`) with the acting user, before/after snapshots, and metadata (e.g. `scenarioId`, approval comment, objective delta). `scenarioId` filters via a JSON-path match on `metadata.scenarioId`. Audit writes are best-effort (wrapped so a logging failure never fails the caller's mutation) and never claim to be a tamper-evident/compliance-grade audit log - see `docs/IMPLEMENTATION_STATUS.md`.

@@ -15,8 +15,9 @@ packages/
   test-fixtures/  Shared fixtures consumed by both Jest and pytest to keep contracts honest
 data/synthetic/  Deterministic, seeded scenario generator
 docs/       This documentation set
-tests/e2e/  Cross-service workflow tests
 ```
+
+Cross-service workflow coverage (real HTTP + live Postgres + the real Python optimizer/simulator subprocesses, no mocks) lives in `apps/api/test/*.e2e-spec.ts` rather than a separate top-level `tests/` package — see `docs/IMPLEMENTATION_STATUS.md` for what each suite covers.
 
 ## Data flow
 

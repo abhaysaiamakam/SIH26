@@ -265,6 +265,39 @@ export interface WhatIfRunSummary {
   totalDelayMinutes: number | null;
 }
 
+export interface AuditEvent {
+  id: string;
+  actorUserId: string | null;
+  correlationId: string | null;
+  action: string;
+  entityType: string;
+  entityId: string;
+  before: Record<string, unknown> | null;
+  after: Record<string, unknown> | null;
+  metadata: Record<string, unknown> | null;
+  createdAt: string;
+}
+
+export interface StrategyAnalytics {
+  strategy: StrategyType;
+  planId: string;
+  objectiveValue: number | null;
+  maintenanceCompletion: { scheduled: number; total: number; ratio: number };
+  criticalCompletion: number;
+  overdueCompletion: number;
+  blocksUsed: number;
+  averageBlockUtilization: number | null;
+  bundleCount: number;
+  conflictCount: number;
+  totalDelayMinutes: number | null;
+}
+
+export interface AnalyticsResponse {
+  scenarioId: string;
+  label: string;
+  strategies: StrategyAnalytics[];
+}
+
 export interface WhatIfResult {
   scenarioEventId: string;
   eventType: string;

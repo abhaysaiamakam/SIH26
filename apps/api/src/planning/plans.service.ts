@@ -1,5 +1,6 @@
 import { BadRequestException, ConflictException, Injectable, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "../prisma/prisma.service";
+import { AuditService } from "../audit/audit.service";
 import { FindPlansQuery } from "./dto/find-plans.query";
 
 const REVISION_INCLUDE = {
@@ -12,7 +13,10 @@ const REVISION_INCLUDE = {
 
 @Injectable()
 export class PlansService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly audit: AuditService,
+  ) {}
 
   findAll(query: FindPlansQuery) {
     return this.prisma.plan.findMany({
@@ -51,13 +55,25 @@ export class PlansService {
 
     const revision = await this.latestRevision(planId);
 
-    return this.prisma.$transaction(async (tx) => {
+    const updated = await this.prisma.$transaction(async (tx) => {
       await tx.planRevision.update({ where: { id: revision.id }, data: { isImmutable: true } });
       await tx.approvalDecision.create({
         data: { planRevisionId: revision.id, decidedById, decision: "APPROVED", comment },
       });
       return tx.plan.update({ where: { id: planId }, data: { status: "APPROVED" } });
     });
+
+    await this.audit.log({
+      actorUserId: decidedById,
+      action: "PLAN_APPROVED",
+      entityType: "Plan",
+      entityId: planId,
+      before: { status: plan.status },
+      after: { status: "APPROVED" },
+      metadata: { scenarioId: plan.scenarioId, comment },
+    });
+
+    return updated;
   }
 
   async reject(planId: string, decidedById: string, comment?: string) {
@@ -73,11 +89,23 @@ export class PlansService {
 
     const revision = await this.latestRevision(planId);
 
-    return this.prisma.$transaction(async (tx) => {
+    const updated = await this.prisma.$transaction(async (tx) => {
       await tx.approvalDecision.create({
         data: { planRevisionId: revision.id, decidedById, decision: "REJECTED", comment },
       });
       return tx.plan.update({ where: { id: planId }, data: { status: "REJECTED" } });
     });
+
+    await this.audit.log({
+      actorUserId: decidedById,
+      action: "PLAN_REJECTED",
+      entityType: "Plan",
+      entityId: planId,
+      before: { status: plan.status },
+      after: { status: "REJECTED" },
+      metadata: { scenarioId: plan.scenarioId, comment },
+    });
+
+    return updated;
   }
 }

@@ -14,6 +14,8 @@ import { PlanningModule } from "./planning/planning.module";
 import { WhatIfModule } from "./what-if/what-if.module";
 import { UsersModule } from "./users/users.module";
 import { AuthModule } from "./auth/auth.module";
+import { AuditModule } from "./audit/audit.module";
+import { AnalyticsModule } from "./analytics/analytics.module";
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { AuthModule } from "./auth/auth.module";
     PrismaModule,
     UsersModule,
     AuthModule,
+    AuditModule,
+    AnalyticsModule,
     ScenariosModule,
     CorridorsModule,
     AssetsModule,

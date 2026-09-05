@@ -3,7 +3,9 @@
 // NestJS API (never PostgreSQL directly).
 
 import type {
+  AnalyticsResponse,
   Asset,
+  AuditEvent,
   AuthUser,
   BlockWindow,
   Corridor,
@@ -185,4 +187,20 @@ export function postWhatIf(dto: {
   payload: Record<string, unknown>;
 }): Promise<WhatIfResult> {
   return apiFetch("/what-if", { method: "POST", body: JSON.stringify(dto) });
+}
+
+// ── Analytics ────────────────────────────────────────────────────────
+
+export function getAnalytics(scenarioId: string): Promise<AnalyticsResponse> {
+  return apiFetch(`/analytics?scenarioId=${scenarioId}`);
+}
+
+// ── Audit ────────────────────────────────────────────────────────────
+
+export function getAuditEvents(params: { scenarioId?: string; entityType?: string } = {}): Promise<AuditEvent[]> {
+  const search = new URLSearchParams();
+  Object.entries(params).forEach(([k, v]) => {
+    if (v) search.set(k, v);
+  });
+  return apiFetch(`/audit-events?${search}`);
 }

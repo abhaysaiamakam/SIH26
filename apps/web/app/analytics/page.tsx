@@ -4,75 +4,42 @@ import { useEffect, useState } from "react";
 import * as api from "../../lib/api-client";
 import { useScenario } from "../../lib/scenario-context";
 import { Card, CardHeader } from "../../components/ui/Card";
-import type { Plan, StrategyType } from "../../lib/types";
+import type { StrategyAnalytics, StrategyType } from "../../lib/types";
 
 const STRATEGIES: StrategyType[] = ["FIRST_FEASIBLE", "PRIORITY_FIRST", "OPTIMIZED"];
 const STRATEGY_COLOR: Record<StrategyType, string> = { FIRST_FEASIBLE: "#64748b", PRIORITY_FIRST: "#d97706", OPTIMIZED: "#2f81f7" };
 
-interface Metrics {
-  plan: Plan;
-  scheduled: number;
-  total: number;
-  critical: number;
-  overdueScheduled: number;
-  bundles: number;
-  blocksUsed: number;
-  delay: number | null;
-}
-
 export default function AnalyticsPage() {
   const { scenarioId } = useScenario();
-  const [metricsByStrategy, setMetricsByStrategy] = useState<Partial<Record<StrategyType, Metrics>>>({});
+  const [byStrategy, setByStrategy] = useState<Partial<Record<StrategyType, StrategyAnalytics>>>({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!scenarioId) return;
     setLoading(true);
-    api.getPlans({ scenarioId }).then(async (plans) => {
-      const byStrategy: Partial<Record<StrategyType, Metrics>> = {};
-      for (const strategy of STRATEGIES) {
-        const candidates = plans
-          .filter((p) => p.strategy === strategy && (p.status === "VALIDATED" || p.status === "APPROVED"))
-          .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-        const latest = candidates[0];
-        if (!latest) continue;
-        const full = await api.getPlan(latest.id);
-        const revision = full.revisions[0];
-        if (!revision) continue;
-        const scheduled = revision.tasks.filter((t) => t.scheduled);
-        const critical = scheduled.filter((t) => t.priorityBreakdown.assetCriticality >= 25);
-        const overdueScheduled = scheduled.filter((t) => t.priorityBreakdown.overdue > 0);
-        byStrategy[strategy] = {
-          plan: full,
-          scheduled: scheduled.length,
-          total: revision.tasks.length,
-          critical: critical.length,
-          overdueScheduled: overdueScheduled.length,
-          bundles: revision.blocks.filter((b) => b.isBundle).length,
-          blocksUsed: revision.blocks.length,
-          delay: revision.simulationRuns[0]?.totalDelayMinutes ?? null,
-        };
-      }
-      setMetricsByStrategy(byStrategy);
+    api.getAnalytics(scenarioId).then((res) => {
+      const map: Partial<Record<StrategyType, StrategyAnalytics>> = {};
+      for (const entry of res.strategies) map[entry.strategy] = entry;
+      setByStrategy(map);
       setLoading(false);
     });
   }, [scenarioId]);
 
-  const maxObjective = Math.max(1, ...STRATEGIES.map((s) => metricsByStrategy[s]?.plan.objectiveValue ?? 0));
+  const maxObjective = Math.max(1, ...STRATEGIES.map((s) => byStrategy[s]?.objectiveValue ?? 0));
 
   return (
     <div className="space-y-4">
       <div>
         <h1 className="text-lg font-semibold text-white">Analytics</h1>
         <p className="text-sm text-slate-400">
-          Comparison across the most recent validated plan per strategy for this scenario -{" "}
+          Server-side comparison across the most recent validated plan per strategy for this scenario -{" "}
           <span className="font-semibold text-slate-300">SYNTHETIC SCENARIO RESULT</span>, not a real-world performance claim.
         </p>
       </div>
 
       {loading ? (
         <p className="text-sm text-slate-500">Loading...</p>
-      ) : Object.keys(metricsByStrategy).length === 0 ? (
+      ) : Object.keys(byStrategy).length === 0 ? (
         <Card className="p-4 text-sm text-slate-500">
           No validated plans yet for this scenario. Run each strategy from the Optimization page first.
         </Card>
@@ -82,8 +49,8 @@ export default function AnalyticsPage() {
             <CardHeader title="Objective Value" subtitle="Higher is better - see docs/OPTIMIZATION_MODEL.md for the objective function" />
             <div className="space-y-3 p-4">
               {STRATEGIES.map((s) => {
-                const m = metricsByStrategy[s];
-                const value = m?.plan.objectiveValue ?? 0;
+                const m = byStrategy[s];
+                const value = m?.objectiveValue ?? 0;
                 return (
                   <div key={s} className="flex items-center gap-3">
                     <span className="w-32 shrink-0 text-xs text-slate-400">{s.replace(/_/g, " ")}</span>
@@ -111,12 +78,24 @@ export default function AnalyticsPage() {
                 </tr>
               </thead>
               <tbody>
-                <MetricRow label="Maintenance completion" strategies={STRATEGIES} m={metricsByStrategy} render={(m) => `${m.scheduled} / ${m.total} (${((m.scheduled / m.total) * 100).toFixed(0)}%)`} />
-                <MetricRow label="Critical completion" strategies={STRATEGIES} m={metricsByStrategy} render={(m) => m.critical} />
-                <MetricRow label="Overdue completion" strategies={STRATEGIES} m={metricsByStrategy} render={(m) => m.overdueScheduled} />
-                <MetricRow label="Blocks used" strategies={STRATEGIES} m={metricsByStrategy} render={(m) => m.blocksUsed} />
-                <MetricRow label="Cross-department bundles" strategies={STRATEGIES} m={metricsByStrategy} render={(m) => m.bundles} />
-                <MetricRow label="Estimated train delay (min)" strategies={STRATEGIES} m={metricsByStrategy} render={(m) => m.delay ?? "n/a"} />
+                <MetricRow
+                  label="Maintenance completion"
+                  strategies={STRATEGIES}
+                  m={byStrategy}
+                  render={(m) => `${m.maintenanceCompletion.scheduled} / ${m.maintenanceCompletion.total} (${(m.maintenanceCompletion.ratio * 100).toFixed(0)}%)`}
+                />
+                <MetricRow label="Critical completion" strategies={STRATEGIES} m={byStrategy} render={(m) => m.criticalCompletion} />
+                <MetricRow label="Overdue completion" strategies={STRATEGIES} m={byStrategy} render={(m) => m.overdueCompletion} />
+                <MetricRow label="Blocks used" strategies={STRATEGIES} m={byStrategy} render={(m) => m.blocksUsed} />
+                <MetricRow
+                  label="Average block utilization"
+                  strategies={STRATEGIES}
+                  m={byStrategy}
+                  render={(m) => (m.averageBlockUtilization !== null ? `${(m.averageBlockUtilization * 100).toFixed(0)}%` : "n/a")}
+                />
+                <MetricRow label="Cross-department bundles" strategies={STRATEGIES} m={byStrategy} render={(m) => m.bundleCount} />
+                <MetricRow label="Simulated conflicts" strategies={STRATEGIES} m={byStrategy} render={(m) => m.conflictCount} />
+                <MetricRow label="Estimated train delay (min)" strategies={STRATEGIES} m={byStrategy} render={(m) => m.totalDelayMinutes ?? "n/a"} />
               </tbody>
             </table>
           </Card>
@@ -134,8 +113,8 @@ function MetricRow({
 }: {
   label: string;
   strategies: StrategyType[];
-  m: Partial<Record<StrategyType, Metrics>>;
-  render: (m: Metrics) => React.ReactNode;
+  m: Partial<Record<StrategyType, StrategyAnalytics>>;
+  render: (m: StrategyAnalytics) => React.ReactNode;
 }) {
   return (
     <tr className="border-b border-rail-border/60">

@@ -7,6 +7,7 @@ import { PlanPersistenceService } from "../optimization/plan-persistence.service
 import { buildOptimizerInput } from "../optimization/build-optimizer-input";
 import { ValidatorService } from "../validation/validator.service";
 import { SimulationService } from "../simulation/simulation.service";
+import { AuditService } from "../audit/audit.service";
 import { CreateWhatIfDto } from "./dto/create-what-if.dto";
 
 const DEPARTMENT_PREFIX: Record<string, string> = { ENGINEERING: "ENG", TRD: "TRD", S_AND_T: "SNT" };
@@ -38,11 +39,20 @@ export class WhatIfService {
     private readonly persistence: PlanPersistenceService,
     private readonly validator: ValidatorService,
     private readonly simulation: SimulationService,
+    private readonly audit: AuditService,
   ) {}
 
-  async run(dto: CreateWhatIfDto) {
+  async run(dto: CreateWhatIfDto, actorUserId?: string) {
     await this.scenarios.findOne(dto.scenarioId);
     const strategy = dto.strategy ?? "OPTIMIZED";
+
+    await this.audit.log({
+      actorUserId,
+      action: "REOPTIMIZATION_STARTED",
+      entityType: "PlanningScenario",
+      entityId: dto.scenarioId,
+      metadata: { eventType: dto.eventType, strategy, payload: dto.payload },
+    });
 
     const baseInput = await buildOptimizerInput(this.prisma, dto.scenarioId, strategy);
     const before = await this.runAndPersist(dto.scenarioId, strategy, baseInput);
@@ -57,6 +67,19 @@ export class WhatIfService {
         source: "WHAT_IF",
         payload: dto.payload as object,
         appliedAt: new Date(),
+      },
+    });
+
+    await this.audit.log({
+      actorUserId,
+      action: "REOPTIMIZATION_COMPLETED",
+      entityType: "PlanningScenario",
+      entityId: dto.scenarioId,
+      metadata: {
+        eventType: dto.eventType,
+        strategy,
+        scenarioEventId: event.id,
+        objectiveDelta: after.objectiveValue - before.objectiveValue,
       },
     });
 
