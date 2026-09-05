@@ -1,8 +1,11 @@
 import { Injectable, Logger, NotFoundException } from "@nestjs/common";
-import { CandidateRejectionReason, StrategyType } from "@railopt/contracts";
+import { StrategyType } from "@railopt/contracts";
 import { PrismaService } from "../prisma/prisma.service";
 import { ScenariosService } from "../scenarios/scenarios.service";
+import { ValidatorService } from "../validation/validator.service";
+import { SimulationService } from "../simulation/simulation.service";
 import { OptimizerClientService } from "./optimizer-client.service";
+import { PlanPersistenceService } from "./plan-persistence.service";
 import { buildOptimizerInput } from "./build-optimizer-input";
 import { CreatePlanningRunDto } from "./dto/create-planning-run.dto";
 
@@ -14,6 +17,9 @@ export class PlanningRunsService {
     private readonly prisma: PrismaService,
     private readonly optimizer: OptimizerClientService,
     private readonly scenarios: ScenariosService,
+    private readonly validator: ValidatorService,
+    private readonly simulation: SimulationService,
+    private readonly persistence: PlanPersistenceService,
   ) {}
 
   async create(dto: CreatePlanningRunDto) {
@@ -60,7 +66,20 @@ export class PlanningRunsService {
       const input = await buildOptimizerInput(this.prisma, run.scenarioId, strategy);
       const output = await this.optimizer.run(input);
 
-      const plan = await this.persistPlan(run.scenarioId, strategy, output);
+      const { plan, revision } = await this.persistence.persist(run.scenarioId, strategy, output);
+
+      // Never assume the optimizer is correct merely because it returned a
+      // result - the independent validator always re-derives VALID/INVALID
+      // from scratch before the plan is presented for approval.
+      const validation = await this.validator.validateRevision(revision.id);
+      await this.prisma.plan.update({
+        where: { id: plan.id },
+        data: { status: validation.status === "VALID" ? "VALIDATED" : "INVALID" },
+      });
+
+      if (validation.status === "VALID") {
+        await this.simulation.simulateRevision(revision.id);
+      }
 
       await this.prisma.planningRun.update({
         where: { id: planningRunId },
@@ -83,58 +102,5 @@ export class PlanningRunsService {
         },
       });
     }
-  }
-
-  private async persistPlan(scenarioId: string, strategy: StrategyType, output: Awaited<ReturnType<OptimizerClientService["run"]>>) {
-    return this.prisma.$transaction(async (tx) => {
-      const plan = await tx.plan.create({
-        data: {
-          scenarioId,
-          strategy,
-          status: "DRAFT",
-          objectiveValue: output.objectiveValue,
-          solverStatus: output.solverStatus,
-        },
-      });
-
-      const revision = await tx.planRevision.create({
-        data: { planId: plan.id, revisionNumber: 1 },
-      });
-
-      const blockIdByTaskId = new Map<string, string>();
-      for (const block of output.planBlocks) {
-        const created = await tx.planBlock.create({
-          data: {
-            planRevisionId: revision.id,
-            blockWindowId: block.blockWindowId,
-            corridorId: block.corridorId,
-            startTime: new Date(block.startTime),
-            endTime: new Date(block.endTime),
-            department: block.department,
-            isBundle: block.isBundle,
-          },
-        });
-        for (const taskId of block.taskIds) {
-          blockIdByTaskId.set(taskId, created.id);
-        }
-      }
-
-      for (const outcome of output.taskOutcomes) {
-        await tx.planTask.create({
-          data: {
-            planRevisionId: revision.id,
-            planBlockId: blockIdByTaskId.get(outcome.maintenanceRequestId) ?? null,
-            maintenanceRequestId: outcome.maintenanceRequestId,
-            scheduled: outcome.scheduled,
-            priorityScore: outcome.priorityScore,
-            priorityBreakdown: outcome.priorityBreakdown as unknown as object,
-            reasons: outcome.reasons as unknown as object,
-            rejectionReason: (outcome.rejectionReason as CandidateRejectionReason | null) ?? undefined,
-          },
-        });
-      }
-
-      return plan;
-    });
   }
 }

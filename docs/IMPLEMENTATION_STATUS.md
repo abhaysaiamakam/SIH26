@@ -54,6 +54,17 @@ This document tracks exactly what is built versus simplified/deferred, updated a
 - 55 pytest cases (up from 39 in Phase 3) + 15 Jest cases (11 unit + 4 e2e) in `apps/api`, all passing.
 - See `docs/OPTIMIZATION_MODEL.md` for the full strategy/CP-SAT/integration description.
 
+## Phase 5 — Validator, Simulator, Plan approval, What-If, RBAC: COMPLETE
+
+- `apps/api/src/validation/validator.service.ts`: independent TypeScript re-derivation of every plan constraint (task uniqueness, block containment, duration, resource-overlap capacity, isolation/power/department permission, bundle compatibility via a from-scratch TS reimplementation of the rule precedence, dependency ordering, hard train conflicts) - shares no code with `services/optimizer`. Wired to run automatically after every planning run and what-if comparison; `Plan.status` becomes `VALIDATED`/`INVALID` accordingly. 10 unit tests (mocked Prisma) covering VALID and every violation code.
+- `services/simulator`: real deterministic traffic-impact estimator (`src/impact.py`) - delay as time-overlap, hard (passenger/express/suburban) vs. soft (goods) conflicts, block utilization - every assumption labeled `SIMULATION ASSUMPTION — NOT A PRODUCTION RAILWAY RULE`. 6 pytest cases. `apps/api/src/simulation`: same subprocess pattern as the optimizer, invoked automatically for every `VALID` plan revision, persisted as `SimulationRun`.
+- `apps/api/src/planning`: `GET /plans`, `GET /plans/:id` (full revision/block/task/validation/simulation/approval detail), `POST /plans/:id/approve` (requires `VALIDATED`, marks the revision `isImmutable=true`, refuses to re-decide an already-decided plan), `POST /plans/:id/reject` (refuses to reject an already-approved/immutable plan).
+- `apps/api/src/what-if`: all 5 event types implemented (`CORRIDOR_UNAVAILABLE`, `BLOCK_WINDOW_SHORTENED`, `TASK_BECOMES_OVERDUE` as pure in-memory hypotheticals; `NEW_CRITICAL_REQUEST`, `ADDITIONAL_TRAIN_MOVEMENT` as persisted new demand), running the full re-generate → re-optimize → re-validate → re-simulate → compare workflow synchronously, returning a `{before, after, delta}` summary and recording a `ScenarioEvent`.
+- `apps/api/src/auth` + `src/users`: local JWT auth (`POST /auth/login`) against 6 seeded demo users (one per role, `prisma/seed.ts`), `RolesGuard`/`@Roles()` enforcing RBAC server-side on every mutating endpoint (`POST /maintenance`, `POST /planning-runs`, `POST /plans/:id/approve|reject`, `POST /what-if`); `GET` endpoints stay open for the demo. `ADMIN` always passes. Shaped to be OIDC-compatible later, not real OIDC today.
+- **Verified end-to-end against the real seeded scenario in this session**: authenticated `POST /planning-runs` → real `Plan` persisted as `VALIDATED` with a real `ValidationRun` (`VALID`) and `SimulationRun` (e.g. 3 impacted trains, 180 delay minutes) → approved by a `DIVISIONAL_PLANNER` token (403 for a `FIELD_ENGINEER` token, 409 on re-approval/reject-after-approval) → revision confirmed `isImmutable=true` in Postgres. A real `CORRIDOR_UNAVAILABLE` what-if on corridor C-03 dropped scheduled tasks from 51→38, objective from ~3737→~2838, blocks 41→30 - a genuine, non-canned before/after/delta.
+- 15 new Jest e2e tests (`auth`, `what-if`, plan-approval subgroup added to `planning-runs`) + 10 new unit tests, all passing against live Postgres/Python.
+- docs/SIMULATION_ASSUMPTIONS.md added; OPTIMIZATION_MODEL.md and API.md updated.
+
 ## Upcoming
 
-Phase 5 (independent TS validator, Python simulator, plan approval with immutable revisions, the What-If engine, RBAC) is next.
+Phase 6 (Next.js frontend: Command Center, Maintenance, Corridors, Block Planning Gantt, Optimization, What-If, Analytics, Audit pages) is next.

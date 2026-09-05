@@ -4,12 +4,46 @@
 // Re-running with the same seed number is idempotent: existing scenario
 // data for that seed is deleted and reloaded.
 
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Role } from "@prisma/client";
+import * as bcrypt from "bcryptjs";
 import { generateScenario } from "@railopt/data-synthetic";
 
 const prisma = new PrismaClient();
 
+const DEMO_USERS: { email: string; name: string; roles: Role[] }[] = [
+  { email: "admin@railopt.demo", name: "Ravi Admin", roles: ["ADMIN"] },
+  { email: "field.engineer@railopt.demo", name: "Field Engineer", roles: ["FIELD_ENGINEER"] },
+  { email: "dept.planner@railopt.demo", name: "Department Planner", roles: ["DEPARTMENT_PLANNER"] },
+  { email: "div.planner@railopt.demo", name: "Divisional Planner", roles: ["DIVISIONAL_PLANNER"] },
+  { email: "control.operator@railopt.demo", name: "Control Operator", roles: ["CONTROL_OPERATOR"] },
+  { email: "management@railopt.demo", name: "Management", roles: ["MANAGEMENT"] },
+];
+const DEMO_PASSWORD = "railopt-demo-2026";
+
+async function seedUsers() {
+  const passwordHash = await bcrypt.hash(DEMO_PASSWORD, 10);
+  for (const u of DEMO_USERS) {
+    const user = await prisma.user.upsert({
+      where: { email: u.email },
+      update: { name: u.name },
+      create: { email: u.email, name: u.name, passwordHash },
+    });
+    for (const role of u.roles) {
+      // Compound-unique lookups can't take a null divisionId in Prisma
+      // (SQL NULL <> NULL means the constraint doesn't dedupe it either),
+      // so check-then-create instead of upsert.
+      const existing = await prisma.roleAssignment.findFirst({ where: { userId: user.id, role, divisionId: null } });
+      if (!existing) {
+        await prisma.roleAssignment.create({ data: { userId: user.id, role } });
+      }
+    }
+  }
+  console.log(`Seeded ${DEMO_USERS.length} demo users (password: "${DEMO_PASSWORD}" for all).`);
+}
+
 async function main() {
+  await seedUsers();
+
   const seedArg = process.argv[2];
   const seed = seedArg ? Number(seedArg) : 42;
   console.log(`Generating synthetic scenario with seed ${seed}...`);
@@ -18,6 +52,24 @@ async function main() {
   const existing = await prisma.planningScenario.findFirst({ where: { seed } });
   if (existing) {
     console.log(`Removing existing scenario for seed ${seed} (${existing.id})...`);
+
+    // Planning artifacts (Plan/PlanRevision/PlanBlock/PlanTask/etc.) hold FK
+    // references down to MaintenanceRequest, so they must be cleared first -
+    // a reseed is a dev-time reset of everything derived from this scenario.
+    const oldPlans = await prisma.plan.findMany({ where: { scenarioId: existing.id }, select: { id: true } });
+    const oldPlanIds = oldPlans.map((p) => p.id);
+    const oldRevisions = await prisma.planRevision.findMany({ where: { planId: { in: oldPlanIds } }, select: { id: true } });
+    const oldRevisionIds = oldRevisions.map((r) => r.id);
+    await prisma.approvalDecision.deleteMany({ where: { planRevisionId: { in: oldRevisionIds } } });
+    await prisma.validationRun.deleteMany({ where: { planRevisionId: { in: oldRevisionIds } } });
+    await prisma.simulationRun.deleteMany({ where: { planRevisionId: { in: oldRevisionIds } } });
+    await prisma.planTask.deleteMany({ where: { planRevisionId: { in: oldRevisionIds } } });
+    await prisma.planBlock.deleteMany({ where: { planRevisionId: { in: oldRevisionIds } } });
+    await prisma.planningRun.updateMany({ where: { scenarioId: existing.id }, data: { resultPlanId: null } });
+    await prisma.planRevision.deleteMany({ where: { id: { in: oldRevisionIds } } });
+    await prisma.plan.deleteMany({ where: { id: { in: oldPlanIds } } });
+    await prisma.planningRun.deleteMany({ where: { scenarioId: existing.id } });
+
     const oldRequests = await prisma.maintenanceRequest.findMany({
       where: { scenarioId: existing.id },
       select: { id: true },

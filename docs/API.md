@@ -30,9 +30,23 @@ Endpoints below are implemented incrementally by phase - see `docs/IMPLEMENTATIO
 - `POST /planning-runs` — body `{ scenarioId, strategy: "FIRST_FEASIBLE" | "PRIORITY_FIRST" | "OPTIMIZED" }`. 404 if the scenario doesn't exist, 400 if the strategy is invalid. Returns `202 Accepted` with the created `PlanningRun` (`status: "PENDING"`) immediately - the run itself executes asynchronously (spawns the Python optimizer as a subprocess; see `docs/OPTIMIZATION_MODEL.md`).
 - `GET /planning-runs/:id` — poll this until `status` is `SUCCEEDED` or `FAILED`. On success, `resultPlanId`/`objectiveValue`/`solverStatus` are populated and a full `Plan` → `PlanRevision` → `PlanBlock`/`PlanTask` tree has been persisted. On failure, `errorMessage` explains what went wrong (subprocess timeout, non-zero exit, invalid output) - never silent.
 
+## Auth (Phase 5)
+
+- `POST /auth/login` — body `{ email, password }`. Returns `{ accessToken, user: { id, email, name, roles } }`. Six demo users are seeded (`pnpm run seed`), one per role, all sharing password `railopt-demo-2026` (see `apps/api/prisma/seed.ts`) - e.g. `div.planner@railopt.demo`, `admin@railopt.demo`.
+- Mutating endpoints require `Authorization: Bearer <token>` and check the caller's roles server-side (`ADMIN` always passes): `POST /maintenance` (FIELD_ENGINEER/DEPARTMENT_PLANNER/DIVISIONAL_PLANNER), `POST /planning-runs` (DIVISIONAL_PLANNER/CONTROL_OPERATOR/MANAGEMENT), `POST /plans/:id/approve|reject` (DIVISIONAL_PLANNER/MANAGEMENT), `POST /what-if` (DIVISIONAL_PLANNER/CONTROL_OPERATOR/MANAGEMENT). All `GET` endpoints remain unauthenticated for the demo. Architecture is OIDC-compatible later (a real identity provider could replace the local JWT issuance without touching the guards) but this is local email/password auth today, not real OIDC.
+
+## Plans (Phase 5)
+
+- `GET /plans?scenarioId=&status=` — list plans.
+- `GET /plans/:id` — full detail: all revisions (newest first), each with its blocks, tasks, validation runs, simulation runs, and approval decisions.
+- `POST /plans/:id/approve` — body `{ comment? }`. Requires the plan to be `VALIDATED` (never an `INVALID` or already-decided plan - 400/409 otherwise). Marks the latest revision `isImmutable=true` and the plan `APPROVED`.
+- `POST /plans/:id/reject` — body `{ comment? }`. Refuses (409) if the plan is already `APPROVED` (immutable) or already `REJECTED`.
+
+## What-If (Phase 5)
+
+- `POST /what-if` — body `{ scenarioId, eventType, strategy?, payload }`. `eventType` is one of `CORRIDOR_UNAVAILABLE`, `NEW_CRITICAL_REQUEST`, `BLOCK_WINDOW_SHORTENED`, `ADDITIONAL_TRAIN_MOVEMENT`, `TASK_BECOMES_OVERDUE`. Runs synchronously: generates a "before" plan from the unmodified scenario, applies the event, generates an "after" plan, validates and (if valid) simulates both, and returns `{ before, after, delta }` summaries plus the persisted `scenarioEventId`. See `docs/OPTIMIZATION_MODEL.md` for exactly how each event type is applied and which are persisted vs. purely hypothetical for that one comparison.
+
 ## Planned (later phases)
 
-- `GET /plans`, `GET /plans/:id`, `POST /plans/:id/approve`, `POST /plans/:id/reject` — Phase 5.
-- `POST /what-if` — Phase 5.
 - `GET /analytics` — Phase 7.
-- `auth`/RBAC-guarded write paths — Phase 5.
+- Systematic `AuditEvent` writes on every mutation — Phase 7.

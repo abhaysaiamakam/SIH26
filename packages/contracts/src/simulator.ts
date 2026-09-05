@@ -1,9 +1,10 @@
 // JSON contract exchanged with services/simulator over stdin/stdout.
-import { OptimizerPlanBlock, OptimizerTrainMovementInput } from "./optimizer";
+import { OptimizerBlockWindowInput, OptimizerPlanBlock, OptimizerTrainMovementInput } from "./optimizer";
 
 export interface SimulatorRunInput {
   planRevisionId: string;
   planBlocks: OptimizerPlanBlock[];
+  blockWindows: OptimizerBlockWindowInput[];
   trainMovements: OptimizerTrainMovementInput[];
 }
 
