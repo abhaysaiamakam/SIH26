@@ -82,6 +82,8 @@ export interface OptimizerConfigInput {
 export interface OptimizerOptions {
   timeLimitSeconds: number;
   randomSeed: number;
+  /** ISO8601 reference "now" for overdue/due-soon computation. Required for determinism - never let the optimizer read the wall clock. */
+  asOf: string;
 }
 
 export interface OptimizerRunInput {

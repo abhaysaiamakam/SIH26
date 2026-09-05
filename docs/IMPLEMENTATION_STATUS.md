@@ -32,6 +32,16 @@ This document tracks exactly what is built versus simplified/deferred, updated a
 - Station coordinates and names are explicitly synthetic (ICAO-alphabet placeholder names on a fictitious grid) — no correspondence to real Indian Railways geography, per the project's data-authenticity boundary.
 - Note: `MaintenanceRequest`/`BlockWindow`/`TrainMovement` are scenario-scoped, but reference data (divisions/corridors/assets/track resources) is derived from seed-specific deterministic IDs, so re-seeding with a *different* seed number creates a second, independent reference network rather than reusing one shared network across scenarios. This is a deliberate simplification for a hackathon prototype — each seed produces one complete, internally-consistent world.
 
+## Phase 3 — Optimizer core pipeline (pre-CP-SAT): COMPLETE
+
+- `services/optimizer/src/core/`: `normalization.py` (raw JSON → typed dataclasses), `priority_engine.py`, `compatibility_engine.py`, `bundling_engine.py`, `candidates.py`, `config_loader.py` (reads `packages/config/v1/*.json` directly - single-sourced with the TypeScript `packages/config` package, path-resolved regardless of working directory).
+- Priority engine: full breakdown (`assetCriticality + maintenanceCriticality + urgency + overdue + dueSoon = total`) plus natural-language explanation, `as_of` always passed explicitly (never wall-clock) for determinism. The overdue-scoring critical rule (positive-only, never a penalty) is enforced by construction and directly tested.
+- Compatibility engine: explicit `TaskCompatibilityRule` (department-scoped or global) always wins over the heuristic defaults (hard-incompatible pairs → same-department rules → cross-department allow-list), plus independent resource-sufficiency checking.
+- Bundling engine: pairwise, same-corridor, cross-department compatible pairs only.
+- Candidate generation: fixed-time candidates per (task-or-bundle, block window), all 8 rejection reason codes implemented and individually tested, dependency feasibility resolved in a second pass over all candidates, hard (passenger/express/suburban) vs. soft (goods, delay-only) train conflicts distinguished.
+- `services/optimizer/tests/`: 39 passing pytest cases covering every rejection reason, the overdue critical rule, explicit-rule overrides in both directions, bundle discovery (positive and negative cases), and dependency feasibility (success, failure, no-predecessor-candidate, multiple-predecessor-candidates).
+- See `docs/OPTIMIZATION_MODEL.md` for the full pipeline description.
+
 ## Upcoming
 
-Phase 3 (optimizer core pipeline: priority/compatibility/bundling engines and candidate generation in `services/optimizer`) is next.
+Phase 4 (FIRST_FEASIBLE / PRIORITY_FIRST / CP-SAT OPTIMIZED strategies, `cli.py` stdin/stdout contract, and the NestJS `optimization` module wiring `POST/GET /planning-runs`) is next.
