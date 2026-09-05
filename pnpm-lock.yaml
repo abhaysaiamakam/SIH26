@@ -41,6 +41,9 @@ importers:
       '@railopt/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
+      '@railopt/data-synthetic':
+        specifier: workspace:*
+        version: link:../../data/synthetic
       bcryptjs:
         specifier: ^2.4.3
         version: 2.4.3

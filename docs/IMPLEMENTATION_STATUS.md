@@ -23,6 +23,15 @@ This document tracks exactly what is built versus simplified/deferred, updated a
 - `next build` + `next start` — frontend serves `/`.
 - `pytest` in both `services/optimizer` and `services/simulator` — passing placeholders (real pipeline tests land in Phase 3/5).
 
+## Phase 2 — Synthetic data + reference/maintenance CRUD: COMPLETE
+
+- Deterministic seeded generator (`data/synthetic/generator`) producing, at seed 42: 2 divisions, 6 fixed corridors (`C-01`..`C-06`), 22 stations, 20 segments, 23 track resources (including 3 deliberately network-wide, capacity-1 machines), 57 assets, 66 maintenance requests, 2 request dependencies, 2 explicit compatibility-rule overrides, 21 block windows, 30 train movements, 3 background scenario events.
+- Engineered scenarios are **guaranteed by construction, not chance**: at least one overdue-critical request, at least one dependency chain, at least two cross-department bundling-opportunity requests, at least two incompatible same-corridor pairs, at least two cross-corridor scarce-resource-conflict requests, and two explicit `TaskCompatibilityRule` rows that override the heuristic defaults in both directions. All eleven of these are asserted by `data/synthetic/tests/generator.spec.ts`, including same-seed determinism and different-seed variation.
+- `apps/api/prisma/seed.ts` loads a generated scenario into Postgres in FK-safe order and is idempotent for a given seed (verified by reseeding twice against a live database in this session).
+- NestJS `scenarios`, `corridors`, `assets`, `maintenance`, and `operations` modules implement `GET /scenarios(/:id)`, `GET /corridors(/:id)`, `GET /assets(/:id)`, `GET /maintenance(/:id)` + `POST /maintenance`, `GET /block-windows`, `GET /train-movements` — all verified against the live seeded database in this session (filters, overdue computation, dependency `dependsOn`/`blockedFor`, and request creation all exercised with real `curl` calls).
+- Station coordinates and names are explicitly synthetic (ICAO-alphabet placeholder names on a fictitious grid) — no correspondence to real Indian Railways geography, per the project's data-authenticity boundary.
+- Note: `MaintenanceRequest`/`BlockWindow`/`TrainMovement` are scenario-scoped, but reference data (divisions/corridors/assets/track resources) is derived from seed-specific deterministic IDs, so re-seeding with a *different* seed number creates a second, independent reference network rather than reusing one shared network across scenarios. This is a deliberate simplification for a hackathon prototype — each seed produces one complete, internally-consistent world.
+
 ## Upcoming
 
-See the phase list in `docs/PROJECT_SPEC.md` / the approved build plan — Phase 2 (synthetic data generator + reference/maintenance CRUD) is next.
+Phase 3 (optimizer core pipeline: priority/compatibility/bundling engines and candidate generation in `services/optimizer`) is next.
