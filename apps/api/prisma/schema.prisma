@@ -401,6 +401,10 @@ model PlanningRun {
   finishedAt     DateTime?         @db.Timestamptz(6)
   solverStatus   String?
   objectiveValue Float?
+  candidateCount         Int?
+  feasibleCandidateCount Int?
+  rejectedCandidateCount Int?
+  solveTimeMs            Int?
   resultPlanId   String?           @unique @db.Uuid
   resultPlan     Plan?             @relation(fields: [resultPlanId], references: [id])
   errorMessage   String?
