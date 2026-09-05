@@ -1,0 +1,2580 @@
+{
+  "scenarioId": "d70c9f16-5cd3-49bd-b41b-d85cbe933959",
+  "strategy": "OPTIMIZED",
+  "configVersion": "v1",
+  "corridors": [
+    {
+      "id": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "code": "C-01"
+    },
+    {
+      "id": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "code": "C-02"
+    },
+    {
+      "id": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "code": "C-03"
+    },
+    {
+      "id": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "code": "C-04"
+    },
+    {
+      "id": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "code": "C-05"
+    },
+    {
+      "id": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "code": "C-06"
+    }
+  ],
+  "trackResources": [
+    {
+      "id": "4d868615-8c9e-4efc-bf6c-475fbe0e4bf5",
+      "code": "C-01-ENG-CREW",
+      "type": "CREW",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "capacity": 2
+    },
+    {
+      "id": "d9ca3027-42d2-4ad6-a198-d51c6a117324",
+      "code": "C-01-TRD-CREW",
+      "type": "CREW",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "capacity": 1
+    },
+    {
+      "id": "44f5a1aa-7663-4008-8d1d-a05bcac3cf44",
+      "code": "C-01-SNT-CREW",
+      "type": "CREW",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "capacity": 1
+    },
+    {
+      "id": "3f690861-b64a-4fa3-ad1a-fce75d4f42c5",
+      "code": "C-02-ENG-CREW",
+      "type": "CREW",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "capacity": 2
+    },
+    {
+      "id": "26764dea-d6ff-4004-aeac-eb727978ff06",
+      "code": "C-02-TRD-CREW",
+      "type": "CREW",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "capacity": 1
+    },
+    {
+      "id": "b9f25d13-d3ab-4cf5-8b9f-709a3a3b4620",
+      "code": "C-02-SNT-CREW",
+      "type": "CREW",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "capacity": 1
+    },
+    {
+      "id": "dfd8890a-5e97-4625-8b6a-cab223bd1a7e",
+      "code": "C-03-ENG-CREW",
+      "type": "CREW",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "capacity": 2
+    },
+    {
+      "id": "e95ec102-6174-4153-9153-039d84cf1100",
+      "code": "C-03-TRD-CREW",
+      "type": "CREW",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "capacity": 1
+    },
+    {
+      "id": "efe92716-7496-418b-a856-d8c3d5d8b536",
+      "code": "C-03-SNT-CREW",
+      "type": "CREW",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "capacity": 1
+    },
+    {
+      "id": "0dd49cda-f532-47e3-ae86-bcb6e7e822a4",
+      "code": "C-04-ENG-CREW",
+      "type": "CREW",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "capacity": 2
+    },
+    {
+      "id": "27c39406-5f59-418a-836f-1853ebca4807",
+      "code": "C-04-TRD-CREW",
+      "type": "CREW",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "capacity": 1
+    },
+    {
+      "id": "e892054c-a847-489a-a9a8-b9b82c3d134b",
+      "code": "C-04-SNT-CREW",
+      "type": "CREW",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "capacity": 1
+    },
+    {
+      "id": "e4da8a85-8208-4af0-8c17-47d4368aca00",
+      "code": "C-05-ENG-CREW",
+      "type": "CREW",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "capacity": 2
+    },
+    {
+      "id": "0148e81a-465e-404d-869f-3ad0d9f7e01e",
+      "code": "C-05-TRD-CREW",
+      "type": "CREW",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "capacity": 1
+    },
+    {
+      "id": "c152002e-e082-48d6-a4b4-7bcb2d0fb416",
+      "code": "C-05-SNT-CREW",
+      "type": "CREW",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "capacity": 1
+    },
+    {
+      "id": "f7051549-cfde-4c7f-b6e4-98fc773cdaee",
+      "code": "C-06-ENG-CREW",
+      "type": "CREW",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "capacity": 2
+    },
+    {
+      "id": "c7eda085-fb83-47ee-a333-36c846690e10",
+      "code": "C-06-TRD-CREW",
+      "type": "CREW",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "capacity": 1
+    },
+    {
+      "id": "5489389f-918f-4b39-a671-990e79dce334",
+      "code": "C-06-SNT-CREW",
+      "type": "CREW",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "capacity": 1
+    },
+    {
+      "id": "20117788-4eec-4040-b579-caff9ad4eab3",
+      "code": "RGM-1",
+      "type": "MACHINE",
+      "corridorId": null,
+      "capacity": 1
+    },
+    {
+      "id": "f9c33dfd-4164-4bd3-96b3-9799977cd89a",
+      "code": "BCM-1",
+      "type": "MACHINE",
+      "corridorId": null,
+      "capacity": 1
+    },
+    {
+      "id": "740fcd1b-4648-4e7b-9cb8-e3c105757dcc",
+      "code": "TM-1",
+      "type": "MACHINE",
+      "corridorId": null,
+      "capacity": 1
+    },
+    {
+      "id": "e0746d02-efe1-42a7-bb41-5def52df2ef4",
+      "code": "MAT-RAIL-PANEL",
+      "type": "MATERIAL",
+      "corridorId": null,
+      "capacity": 5
+    },
+    {
+      "id": "18044918-9124-4ff3-9fce-56aa30305575",
+      "code": "TOOL-UST-KIT",
+      "type": "TOOL",
+      "corridorId": null,
+      "capacity": 3
+    }
+  ],
+  "maintenanceRequests": [
+    {
+      "id": "508d132e-bfa7-4c86-882c-a43a5dd95ce7",
+      "department": "ENGINEERING",
+      "assetId": "dcb821ba-d9a5-4d88-8e59-db97bc077e30",
+      "assetCriticality": "HIGH",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": "deefac0f-ee16-46e7-9210-bef77f8e1431",
+      "workType": "TRACK_RENEWAL",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-06T00:00:00.000Z",
+      "estimatedDurationMinutes": 303,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "4d868615-8c9e-4efc-bf6c-475fbe0e4bf5",
+          "quantity": 1
+        },
+        {
+          "resourceId": "740fcd1b-4648-4e7b-9cb8-e3c105757dcc",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "92677c0c-e98f-4ddd-a872-77ceb5f7e58b",
+      "department": "ENGINEERING",
+      "assetId": "a20059c1-9afa-4dd9-9a55-9417fee27d49",
+      "assetCriticality": "HIGH",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": "deefac0f-ee16-46e7-9210-bef77f8e1431",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-03T00:00:00.000Z",
+      "estimatedDurationMinutes": 101,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "469f57f5-f50f-4162-bee3-446c0e92ac00",
+      "department": "TRD",
+      "assetId": "6773f1a5-29ae-495e-8c8f-62aefe041828",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": "deefac0f-ee16-46e7-9210-bef77f8e1431",
+      "workType": "OHE_MAINTENANCE",
+      "criticality": "CRITICAL",
+      "urgency": "CRITICAL",
+      "dueDate": "2026-09-07T00:00:00.000Z",
+      "estimatedDurationMinutes": 184,
+      "requiredIsolation": "POWER_ISOLATION",
+      "requiredPower": "TRACTION_POWER_OFF",
+      "requiredResources": [
+        {
+          "resourceId": "d9ca3027-42d2-4ad6-a198-d51c6a117324",
+          "quantity": 1
+        }
+      ],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "e5d35cd6-fe14-4f98-975d-e9836b8d5a05",
+      "department": "S_AND_T",
+      "assetId": "474503bf-2bc1-4590-a82c-50c1f15479fe",
+      "assetCriticality": "MEDIUM",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": "deefac0f-ee16-46e7-9210-bef77f8e1431",
+      "workType": "SIGNAL_MAINTENANCE",
+      "criticality": "MEDIUM",
+      "urgency": "MEDIUM",
+      "dueDate": "2026-09-04T00:00:00.000Z",
+      "estimatedDurationMinutes": 144,
+      "requiredIsolation": "SIGNAL_ISOLATION",
+      "requiredPower": "LOW_VOLTAGE",
+      "requiredResources": [
+        {
+          "resourceId": "44f5a1aa-7663-4008-8d1d-a05bcac3cf44",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "2045326f-4957-4919-868e-11ac4baea458",
+      "department": "S_AND_T",
+      "assetId": "4de0d107-fdf9-41ff-92e8-9370f5b4d9e7",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": "deefac0f-ee16-46e7-9210-bef77f8e1431",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "CRITICAL",
+      "urgency": "CRITICAL",
+      "dueDate": "2026-09-03T00:00:00.000Z",
+      "estimatedDurationMinutes": 96,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "14c17917-466b-4994-ba02-c83faec90816",
+      "department": "ENGINEERING",
+      "assetId": "1f058ad9-fdaa-4297-a411-4880703cb805",
+      "assetCriticality": "MEDIUM",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": "2d7ba0bd-c00d-44c4-b6ae-96e5a0ec2e35",
+      "workType": "BALLAST_CLEANING",
+      "criticality": "MEDIUM",
+      "urgency": "MEDIUM",
+      "dueDate": "2026-09-28T00:00:00.000Z",
+      "estimatedDurationMinutes": 278,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "4d868615-8c9e-4efc-bf6c-475fbe0e4bf5",
+          "quantity": 1
+        },
+        {
+          "resourceId": "f9c33dfd-4164-4bd3-96b3-9799977cd89a",
+          "quantity": 1
+        }
+      ],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "c98ca953-b3ff-48da-bcdc-2ba8e82a3ef2",
+      "department": "ENGINEERING",
+      "assetId": "595e7b8e-9179-4978-905d-a1e17f853b9d",
+      "assetCriticality": "MEDIUM",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": "deefac0f-ee16-46e7-9210-bef77f8e1431",
+      "workType": "TRACK_RENEWAL",
+      "criticality": "MEDIUM",
+      "urgency": "MEDIUM",
+      "dueDate": "2026-09-16T00:00:00.000Z",
+      "estimatedDurationMinutes": 333,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "4d868615-8c9e-4efc-bf6c-475fbe0e4bf5",
+          "quantity": 1
+        },
+        {
+          "resourceId": "740fcd1b-4648-4e7b-9cb8-e3c105757dcc",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "5df4a37d-777e-4e7c-8eb8-e3722a18f7ed",
+      "department": "ENGINEERING",
+      "assetId": "45d85332-e88c-4e64-9a2a-9384548655f3",
+      "assetCriticality": "HIGH",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": "6b9aa09e-7c2d-429b-bf68-c892d9e68b35",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-14T00:00:00.000Z",
+      "estimatedDurationMinutes": 115,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "e9efff13-14b2-4ad9-8def-4b6bc80145ad",
+      "department": "ENGINEERING",
+      "assetId": "30fcc04d-9c0d-4a2f-ad9e-919e80ff1e4f",
+      "assetCriticality": "HIGH",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": "769b2284-5a83-477d-9863-0d3792cf7f84",
+      "workType": "BALLAST_CLEANING",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-10-03T00:00:00.000Z",
+      "estimatedDurationMinutes": 190,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "3f690861-b64a-4fa3-ad1a-fce75d4f42c5",
+          "quantity": 1
+        },
+        {
+          "resourceId": "f9c33dfd-4164-4bd3-96b3-9799977cd89a",
+          "quantity": 1
+        }
+      ],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "2c7e6854-b41d-4345-89cc-88b55398ca4b",
+      "department": "ENGINEERING",
+      "assetId": "3c020a5b-35a9-4973-8b67-01fb61c87e4d",
+      "assetCriticality": "MEDIUM",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": "769b2284-5a83-477d-9863-0d3792cf7f84",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "MEDIUM",
+      "urgency": "MEDIUM",
+      "dueDate": "2026-09-16T00:00:00.000Z",
+      "estimatedDurationMinutes": 75,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "c70421e8-a2cc-4b95-8e2d-61a3105a649b",
+      "department": "TRD",
+      "assetId": "a3e07c1b-2877-49e9-96e2-69492c5968d7",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": "769b2284-5a83-477d-9863-0d3792cf7f84",
+      "workType": "OHE_MAINTENANCE",
+      "criticality": "CRITICAL",
+      "urgency": "CRITICAL",
+      "dueDate": "2026-08-31T00:00:00.000Z",
+      "estimatedDurationMinutes": 210,
+      "requiredIsolation": "POWER_ISOLATION",
+      "requiredPower": "TRACTION_POWER_OFF",
+      "requiredResources": [
+        {
+          "resourceId": "26764dea-d6ff-4004-aeac-eb727978ff06",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "1e5293bf-0ad4-46a0-8205-c2466d5447c6",
+      "department": "S_AND_T",
+      "assetId": "17c1d325-f676-4ba9-802e-11215ede02b5",
+      "assetCriticality": "LOW",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": "769b2284-5a83-477d-9863-0d3792cf7f84",
+      "workType": "SIGNAL_MAINTENANCE",
+      "criticality": "LOW",
+      "urgency": "LOW",
+      "dueDate": "2026-10-02T00:00:00.000Z",
+      "estimatedDurationMinutes": 139,
+      "requiredIsolation": "SIGNAL_ISOLATION",
+      "requiredPower": "LOW_VOLTAGE",
+      "requiredResources": [
+        {
+          "resourceId": "b9f25d13-d3ab-4cf5-8b9f-709a3a3b4620",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "3c47dbdf-0284-4af8-8be4-4b3835893ea2",
+      "department": "S_AND_T",
+      "assetId": "08200063-2894-4c40-9424-d3b1d1ac468c",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": "40912574-1284-4819-982a-d3e0c8b9e29c",
+      "workType": "SIGNAL_MAINTENANCE",
+      "criticality": "CRITICAL",
+      "urgency": "CRITICAL",
+      "dueDate": "2026-09-25T00:00:00.000Z",
+      "estimatedDurationMinutes": 168,
+      "requiredIsolation": "SIGNAL_ISOLATION",
+      "requiredPower": "LOW_VOLTAGE",
+      "requiredResources": [
+        {
+          "resourceId": "b9f25d13-d3ab-4cf5-8b9f-709a3a3b4620",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "76d94fa3-d98e-40a7-ad1a-bd6150b8c11d",
+      "department": "ENGINEERING",
+      "assetId": "9151675b-eadc-448c-ad65-9bf7080a9697",
+      "assetCriticality": "HIGH",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": "769b2284-5a83-477d-9863-0d3792cf7f84",
+      "workType": "POINTS_CROSSING_MAINTENANCE",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-12T00:00:00.000Z",
+      "estimatedDurationMinutes": 191,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "3f690861-b64a-4fa3-ad1a-fce75d4f42c5",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "f35655c1-5e6f-466b-83d4-3bb8589f3abf",
+      "department": "S_AND_T",
+      "assetId": "82198706-3fa3-49f1-9f60-b01f0ed8e0c0",
+      "assetCriticality": "HIGH",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": "40912574-1284-4819-982a-d3e0c8b9e29c",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-29T00:00:00.000Z",
+      "estimatedDurationMinutes": 105,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "9c519d48-61d5-4383-b688-b14b06ef51da",
+      "department": "ENGINEERING",
+      "assetId": "240e4fab-1bde-4f52-9168-f68f20b0e4d7",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": "ce16db30-327f-43a0-8ceb-43b16b439bcd",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "CRITICAL",
+      "urgency": "CRITICAL",
+      "dueDate": "2026-09-06T00:00:00.000Z",
+      "estimatedDurationMinutes": 85,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "00785777-8077-4865-baaf-e9dc902f5cc4",
+      "department": "ENGINEERING",
+      "assetId": "17e4b08d-e902-4300-8161-2223bd9770b6",
+      "assetCriticality": "HIGH",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": "ce16db30-327f-43a0-8ceb-43b16b439bcd",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-10-02T00:00:00.000Z",
+      "estimatedDurationMinutes": 107,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "5b998be7-226b-46ec-8add-2aab50f473e5",
+      "department": "ENGINEERING",
+      "assetId": "65212aa7-cbc1-4ba8-a39f-8d512c25538d",
+      "assetCriticality": "LOW",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": "ce16db30-327f-43a0-8ceb-43b16b439bcd",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "LOW",
+      "urgency": "LOW",
+      "dueDate": "2026-09-03T00:00:00.000Z",
+      "estimatedDurationMinutes": 64,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "ec7608d9-280e-4ac6-a23e-4364de337bf0",
+      "department": "ENGINEERING",
+      "assetId": "b36627d9-304a-488e-9793-d711d824db59",
+      "assetCriticality": "HIGH",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": "3fccde5a-fca6-41df-83a6-de8eb555e3ac",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-01T00:00:00.000Z",
+      "estimatedDurationMinutes": 96,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "4294b3a7-8e89-4560-a5c6-c9065ae8310d",
+      "department": "TRD",
+      "assetId": "d2bc7c92-cb12-4ca8-9f78-9b3b12e700aa",
+      "assetCriticality": "HIGH",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": "ce16db30-327f-43a0-8ceb-43b16b439bcd",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-17T00:00:00.000Z",
+      "estimatedDurationMinutes": 112,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "ead46ab1-e206-427c-bcd5-eecf23245573",
+      "department": "TRD",
+      "assetId": "d780fcdc-68fa-4684-ab7c-115188261dd1",
+      "assetCriticality": "HIGH",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": "c1000262-e2a6-4d00-8119-9b0cdbcc0767",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-12T00:00:00.000Z",
+      "estimatedDurationMinutes": 118,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "f1d0ab3e-2c27-4b9f-ad8a-250af724976f",
+      "department": "S_AND_T",
+      "assetId": "f818e6ff-74ee-41ac-811e-e2351ec56f37",
+      "assetCriticality": "LOW",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": "3fccde5a-fca6-41df-83a6-de8eb555e3ac",
+      "workType": "INTERLOCKING_UPGRADE",
+      "criticality": "LOW",
+      "urgency": "LOW",
+      "dueDate": "2026-09-12T00:00:00.000Z",
+      "estimatedDurationMinutes": 224,
+      "requiredIsolation": "SIGNAL_ISOLATION",
+      "requiredPower": "LOW_VOLTAGE",
+      "requiredResources": [
+        {
+          "resourceId": "efe92716-7496-418b-a856-d8c3d5d8b536",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "2b634802-6a4f-44ff-be6b-95567e1cc467",
+      "department": "S_AND_T",
+      "assetId": "0bbf1655-f380-4c80-8cfc-ec7dd0eab7d0",
+      "assetCriticality": "LOW",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": "c1000262-e2a6-4d00-8119-9b0cdbcc0767",
+      "workType": "SIGNAL_MAINTENANCE",
+      "criticality": "LOW",
+      "urgency": "LOW",
+      "dueDate": "2026-09-29T00:00:00.000Z",
+      "estimatedDurationMinutes": 176,
+      "requiredIsolation": "SIGNAL_ISOLATION",
+      "requiredPower": "LOW_VOLTAGE",
+      "requiredResources": [
+        {
+          "resourceId": "efe92716-7496-418b-a856-d8c3d5d8b536",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "46809632-ab29-4c71-bdd5-131c9e014f34",
+      "department": "ENGINEERING",
+      "assetId": "3809f642-4ef4-4adc-adb6-614111b17c6f",
+      "assetCriticality": "MEDIUM",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": "3fccde5a-fca6-41df-83a6-de8eb555e3ac",
+      "workType": "RAIL_GRINDING",
+      "criticality": "MEDIUM",
+      "urgency": "MEDIUM",
+      "dueDate": "2026-09-15T00:00:00.000Z",
+      "estimatedDurationMinutes": 233,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "dfd8890a-5e97-4625-8b6a-cab223bd1a7e",
+          "quantity": 1
+        },
+        {
+          "resourceId": "20117788-4eec-4040-b579-caff9ad4eab3",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "dac59dc7-f712-46fa-9109-90ab830307aa",
+      "department": "ENGINEERING",
+      "assetId": "afabd7ff-2352-434d-84e3-4c5782e7c96c",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "segmentId": "cd44ddbd-4a23-49c3-bfec-fa03e3a33b1c",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "CRITICAL",
+      "urgency": "CRITICAL",
+      "dueDate": "2026-09-13T00:00:00.000Z",
+      "estimatedDurationMinutes": 100,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "5556907a-a6a5-4ffa-a55b-d353d8e0f8e7",
+      "department": "ENGINEERING",
+      "assetId": "70d6027d-8e93-4d3b-a2b7-76324b0d3075",
+      "assetCriticality": "LOW",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "segmentId": "8df94753-1ae5-4aa2-9547-f9a58e0e49b2",
+      "workType": "BALLAST_CLEANING",
+      "criticality": "LOW",
+      "urgency": "LOW",
+      "dueDate": "2026-09-20T00:00:00.000Z",
+      "estimatedDurationMinutes": 308,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "0dd49cda-f532-47e3-ae86-bcb6e7e822a4",
+          "quantity": 1
+        },
+        {
+          "resourceId": "f9c33dfd-4164-4bd3-96b3-9799977cd89a",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "7b80cc14-ca1b-47c3-b6a3-9b6b8df0da18",
+      "department": "ENGINEERING",
+      "assetId": "6f7a4106-1036-4cb2-971c-55947ba31322",
+      "assetCriticality": "LOW",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "segmentId": "a25c1f71-989a-4954-87c2-24cb1eb2949f",
+      "workType": "POINTS_CROSSING_MAINTENANCE",
+      "criticality": "LOW",
+      "urgency": "LOW",
+      "dueDate": "2026-09-15T00:00:00.000Z",
+      "estimatedDurationMinutes": 225,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "0dd49cda-f532-47e3-ae86-bcb6e7e822a4",
+          "quantity": 1
+        }
+      ],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "259d0821-a1a3-4529-975b-76dc1d7c1140",
+      "department": "ENGINEERING",
+      "assetId": "a0eebc40-91ac-44a2-a8e0-dbc85c0c7d18",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "segmentId": "cd44ddbd-4a23-49c3-bfec-fa03e3a33b1c",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "CRITICAL",
+      "urgency": "CRITICAL",
+      "dueDate": "2026-09-22T00:00:00.000Z",
+      "estimatedDurationMinutes": 117,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "3c1d6af5-21f3-43a9-a43d-4b1124af8eaf",
+      "department": "TRD",
+      "assetId": "3bbe9f6e-5ff4-491d-9ac3-95acf4ee7996",
+      "assetCriticality": "HIGH",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "segmentId": "a25c1f71-989a-4954-87c2-24cb1eb2949f",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-26T00:00:00.000Z",
+      "estimatedDurationMinutes": 113,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "9fabcbab-9001-45c0-8c11-0f37438a14f3",
+      "department": "TRD",
+      "assetId": "fdd91d95-27cb-4fb5-8db3-36947ecede83",
+      "assetCriticality": "MEDIUM",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "segmentId": "a25c1f71-989a-4954-87c2-24cb1eb2949f",
+      "workType": "TRACTION_SUBSTATION_MAINTENANCE",
+      "criticality": "MEDIUM",
+      "urgency": "MEDIUM",
+      "dueDate": "2026-09-13T00:00:00.000Z",
+      "estimatedDurationMinutes": 171,
+      "requiredIsolation": "POWER_ISOLATION",
+      "requiredPower": "TRACTION_POWER_OFF",
+      "requiredResources": [
+        {
+          "resourceId": "27c39406-5f59-418a-836f-1853ebca4807",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "948d5465-fd3f-41e6-babd-9ac66240efda",
+      "department": "S_AND_T",
+      "assetId": "c1e5ca79-4010-4b27-b9f5-3ca7c6abbd19",
+      "assetCriticality": "HIGH",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "segmentId": "a25c1f71-989a-4954-87c2-24cb1eb2949f",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-04T00:00:00.000Z",
+      "estimatedDurationMinutes": 80,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "cf4465fb-16f2-4261-afcc-b28f0f06b078",
+      "department": "ENGINEERING",
+      "assetId": "42590b6b-78db-4016-8220-bdcb10a52a89",
+      "assetCriticality": "HIGH",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": "f35df3db-0c20-4281-b8a1-93cead41dc3e",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-10-02T00:00:00.000Z",
+      "estimatedDurationMinutes": 102,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "bbae1265-701e-4b93-9560-62fd3e511aca",
+      "department": "ENGINEERING",
+      "assetId": "594a6904-ac0c-4e4c-a1e2-bff2d474a886",
+      "assetCriticality": "LOW",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": "f35df3db-0c20-4281-b8a1-93cead41dc3e",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "LOW",
+      "urgency": "LOW",
+      "dueDate": "2026-10-01T00:00:00.000Z",
+      "estimatedDurationMinutes": 103,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "bbb8c212-96cb-46d1-9650-df359b880c1d",
+      "department": "ENGINEERING",
+      "assetId": "ca7ecc27-b2bb-4fd5-92f4-e3f90754b77c",
+      "assetCriticality": "MEDIUM",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": "d971dbb8-6187-4cd1-a25a-baf26c3dc78c",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "MEDIUM",
+      "urgency": "MEDIUM",
+      "dueDate": "2026-09-25T00:00:00.000Z",
+      "estimatedDurationMinutes": 86,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "0795732c-ec56-4931-82ee-07a55cdb717e",
+      "department": "ENGINEERING",
+      "assetId": "d17d5f68-066d-42be-a962-cd8c2e562422",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": "f35df3db-0c20-4281-b8a1-93cead41dc3e",
+      "workType": "BRIDGE_INSPECTION",
+      "criticality": "CRITICAL",
+      "urgency": "CRITICAL",
+      "dueDate": "2026-09-09T00:00:00.000Z",
+      "estimatedDurationMinutes": 62,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "e4da8a85-8208-4af0-8c17-47d4368aca00",
+          "quantity": 1
+        },
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "cb227906-1de8-4da9-982c-f3b422b13aca",
+      "department": "TRD",
+      "assetId": "1b7c33ed-3dac-48af-8432-a751e4f41d00",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": "53c8706a-7df4-455c-9426-406cc5eb7260",
+      "workType": "TRACTION_SUBSTATION_MAINTENANCE",
+      "criticality": "CRITICAL",
+      "urgency": "CRITICAL",
+      "dueDate": "2026-09-01T00:00:00.000Z",
+      "estimatedDurationMinutes": 272,
+      "requiredIsolation": "POWER_ISOLATION",
+      "requiredPower": "TRACTION_POWER_OFF",
+      "requiredResources": [
+        {
+          "resourceId": "0148e81a-465e-404d-869f-3ad0d9f7e01e",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "dc9bbf70-bd6c-4d8e-b6bf-df0644e309d4",
+      "department": "S_AND_T",
+      "assetId": "6e612608-8595-4ff2-bf26-55c509362773",
+      "assetCriticality": "MEDIUM",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": "d971dbb8-6187-4cd1-a25a-baf26c3dc78c",
+      "workType": "SIGNAL_MAINTENANCE",
+      "criticality": "MEDIUM",
+      "urgency": "MEDIUM",
+      "dueDate": "2026-09-21T00:00:00.000Z",
+      "estimatedDurationMinutes": 146,
+      "requiredIsolation": "SIGNAL_ISOLATION",
+      "requiredPower": "LOW_VOLTAGE",
+      "requiredResources": [
+        {
+          "resourceId": "c152002e-e082-48d6-a4b4-7bcb2d0fb416",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "a339faff-6f56-450f-becd-91bede258f8b",
+      "department": "S_AND_T",
+      "assetId": "b34416c8-e786-4ec6-9974-c4d20f8d1e81",
+      "assetCriticality": "LOW",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": "f35df3db-0c20-4281-b8a1-93cead41dc3e",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "LOW",
+      "urgency": "LOW",
+      "dueDate": "2026-10-01T00:00:00.000Z",
+      "estimatedDurationMinutes": 109,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "1b36fdf3-321c-4411-98c2-3a737b140cec",
+      "department": "S_AND_T",
+      "assetId": "ee5314f6-f924-4e86-96b3-39f45cd1dae4",
+      "assetCriticality": "HIGH",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": "f35df3db-0c20-4281-b8a1-93cead41dc3e",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-20T00:00:00.000Z",
+      "estimatedDurationMinutes": 74,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "91458dee-5329-4955-9b13-4d5b4277be0d",
+      "department": "ENGINEERING",
+      "assetId": "25c5dd73-dc44-42e8-9ebe-7b47b41b8993",
+      "assetCriticality": "LOW",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": "eaa06031-75ac-4e94-ae1a-d900ae90ac2c",
+      "workType": "TRACK_RENEWAL",
+      "criticality": "LOW",
+      "urgency": "LOW",
+      "dueDate": "2026-10-04T00:00:00.000Z",
+      "estimatedDurationMinutes": 280,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "f7051549-cfde-4c7f-b6e4-98fc773cdaee",
+          "quantity": 1
+        },
+        {
+          "resourceId": "740fcd1b-4648-4e7b-9cb8-e3c105757dcc",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "d0cf945e-439e-4f1f-8f1f-40d7c6fc5c8d",
+      "department": "ENGINEERING",
+      "assetId": "191aafe1-0559-4dc4-8ced-c07aedcea137",
+      "assetCriticality": "LOW",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": "ba9a0bcb-f02e-4d82-ae53-2c3420e4ea38",
+      "workType": "BALLAST_CLEANING",
+      "criticality": "LOW",
+      "urgency": "LOW",
+      "dueDate": "2026-10-04T00:00:00.000Z",
+      "estimatedDurationMinutes": 303,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "f7051549-cfde-4c7f-b6e4-98fc773cdaee",
+          "quantity": 1
+        },
+        {
+          "resourceId": "f9c33dfd-4164-4bd3-96b3-9799977cd89a",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "da4f7432-9e60-40c3-8153-8cb9a96ccf85",
+      "department": "TRD",
+      "assetId": "f817b54f-9fb5-4533-aa15-1ead4c3d0172",
+      "assetCriticality": "LOW",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": "eaa06031-75ac-4e94-ae1a-d900ae90ac2c",
+      "workType": "OHE_MAINTENANCE",
+      "criticality": "LOW",
+      "urgency": "LOW",
+      "dueDate": "2026-09-04T00:00:00.000Z",
+      "estimatedDurationMinutes": 196,
+      "requiredIsolation": "POWER_ISOLATION",
+      "requiredPower": "TRACTION_POWER_OFF",
+      "requiredResources": [
+        {
+          "resourceId": "c7eda085-fb83-47ee-a333-36c846690e10",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "85897433-34e1-491a-8a50-8926462e2cbe",
+      "department": "TRD",
+      "assetId": "8cd19c49-1c09-4e31-bbd1-a880f147a7cd",
+      "assetCriticality": "LOW",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": "034e2933-940b-477b-8021-e9dc2e1cd785",
+      "workType": "TRACTION_SUBSTATION_MAINTENANCE",
+      "criticality": "LOW",
+      "urgency": "LOW",
+      "dueDate": "2026-09-12T00:00:00.000Z",
+      "estimatedDurationMinutes": 162,
+      "requiredIsolation": "POWER_ISOLATION",
+      "requiredPower": "TRACTION_POWER_OFF",
+      "requiredResources": [
+        {
+          "resourceId": "c7eda085-fb83-47ee-a333-36c846690e10",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "68e5d18d-2efa-402c-878e-b6194edde0d6",
+      "department": "S_AND_T",
+      "assetId": "d88ca97d-f9dd-4d28-a94e-3de1ced49530",
+      "assetCriticality": "LOW",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": "eaa06031-75ac-4e94-ae1a-d900ae90ac2c",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "LOW",
+      "urgency": "LOW",
+      "dueDate": "2026-09-13T00:00:00.000Z",
+      "estimatedDurationMinutes": 86,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "c0461640-cbf9-4384-8b85-3f7e2b0fdec6",
+      "department": "S_AND_T",
+      "assetId": "175d6cb7-e855-433e-8c5f-09b3b78bdad3",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": "ba9a0bcb-f02e-4d82-ae53-2c3420e4ea38",
+      "workType": "SIGNAL_MAINTENANCE",
+      "criticality": "CRITICAL",
+      "urgency": "CRITICAL",
+      "dueDate": "2026-09-15T00:00:00.000Z",
+      "estimatedDurationMinutes": 146,
+      "requiredIsolation": "SIGNAL_ISOLATION",
+      "requiredPower": "LOW_VOLTAGE",
+      "requiredResources": [
+        {
+          "resourceId": "5489389f-918f-4b39-a671-990e79dce334",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "1a4b0888-1579-432b-9ce8-84e197f6f0a6",
+      "department": "TRD",
+      "assetId": "b346b30f-838b-4ed7-93ef-a3ff0c7b0e61",
+      "assetCriticality": "MEDIUM",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": "034e2933-940b-477b-8021-e9dc2e1cd785",
+      "workType": "TRACTION_SUBSTATION_MAINTENANCE",
+      "criticality": "MEDIUM",
+      "urgency": "MEDIUM",
+      "dueDate": "2026-09-22T00:00:00.000Z",
+      "estimatedDurationMinutes": 257,
+      "requiredIsolation": "POWER_ISOLATION",
+      "requiredPower": "TRACTION_POWER_OFF",
+      "requiredResources": [
+        {
+          "resourceId": "c7eda085-fb83-47ee-a333-36c846690e10",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "77b0f83e-fbfa-4d9b-9194-a2438e54f13c",
+      "department": "S_AND_T",
+      "assetId": "4de0d107-fdf9-41ff-92e8-9370f5b4d9e7",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": "deefac0f-ee16-46e7-9210-bef77f8e1431",
+      "workType": "SIGNAL_MAINTENANCE",
+      "criticality": "CRITICAL",
+      "urgency": "CRITICAL",
+      "dueDate": "2026-08-31T00:00:00.000Z",
+      "estimatedDurationMinutes": 107,
+      "requiredIsolation": "SIGNAL_ISOLATION",
+      "requiredPower": "LOW_VOLTAGE",
+      "requiredResources": [
+        {
+          "resourceId": "44f5a1aa-7663-4008-8d1d-a05bcac3cf44",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "ccdb453f-4ae0-4bd5-b16b-fb1653c22c59",
+      "department": "TRD",
+      "assetId": "1b7c33ed-3dac-48af-8432-a751e4f41d00",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": "53c8706a-7df4-455c-9426-406cc5eb7260",
+      "workType": "TRACTION_SUBSTATION_MAINTENANCE",
+      "criticality": "CRITICAL",
+      "urgency": "CRITICAL",
+      "dueDate": "2026-08-27T00:00:00.000Z",
+      "estimatedDurationMinutes": 175,
+      "requiredIsolation": "POWER_ISOLATION",
+      "requiredPower": "TRACTION_POWER_OFF",
+      "requiredResources": [
+        {
+          "resourceId": "0148e81a-465e-404d-869f-3ad0d9f7e01e",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "fa104d5d-d11e-4d7c-974d-6259fd74f95a",
+      "department": "ENGINEERING",
+      "assetId": "dcb821ba-d9a5-4d88-8e59-db97bc077e30",
+      "assetCriticality": "HIGH",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": "deefac0f-ee16-46e7-9210-bef77f8e1431",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-09T00:00:00.000Z",
+      "estimatedDurationMinutes": 67,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "40ce4b7a-a769-473b-86fd-8b2afde883b5",
+      "department": "ENGINEERING",
+      "assetId": "dcb821ba-d9a5-4d88-8e59-db97bc077e30",
+      "assetCriticality": "HIGH",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": "deefac0f-ee16-46e7-9210-bef77f8e1431",
+      "workType": "TRACK_RENEWAL",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-18T00:00:00.000Z",
+      "estimatedDurationMinutes": 304,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "4d868615-8c9e-4efc-bf6c-475fbe0e4bf5",
+          "quantity": 1
+        },
+        {
+          "resourceId": "740fcd1b-4648-4e7b-9cb8-e3c105757dcc",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "8a1a77e8-afa6-4ca7-b6b8-5e71b3251576",
+      "department": "ENGINEERING",
+      "assetId": "240e4fab-1bde-4f52-9168-f68f20b0e4d7",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": "ce16db30-327f-43a0-8ceb-43b16b439bcd",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "CRITICAL",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-08T00:00:00.000Z",
+      "estimatedDurationMinutes": 106,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "38f68117-b8bf-4b50-a099-aab4f5613169",
+      "department": "ENGINEERING",
+      "assetId": "240e4fab-1bde-4f52-9168-f68f20b0e4d7",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": "ce16db30-327f-43a0-8ceb-43b16b439bcd",
+      "workType": "TRACK_RENEWAL",
+      "criticality": "CRITICAL",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-18T00:00:00.000Z",
+      "estimatedDurationMinutes": 248,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "dfd8890a-5e97-4625-8b6a-cab223bd1a7e",
+          "quantity": 1
+        },
+        {
+          "resourceId": "740fcd1b-4648-4e7b-9cb8-e3c105757dcc",
+          "quantity": 1
+        }
+      ],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "e3fce24b-1cd6-4170-a58b-71e5b3b30914",
+      "department": "ENGINEERING",
+      "assetId": "dcb821ba-d9a5-4d88-8e59-db97bc077e30",
+      "assetCriticality": "HIGH",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": "deefac0f-ee16-46e7-9210-bef77f8e1431",
+      "workType": "TRACK_RENEWAL",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-10T00:00:00.000Z",
+      "estimatedDurationMinutes": 308,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "4d868615-8c9e-4efc-bf6c-475fbe0e4bf5",
+          "quantity": 1
+        },
+        {
+          "resourceId": "740fcd1b-4648-4e7b-9cb8-e3c105757dcc",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "81f044d3-bfd3-46be-be96-5599c2315c25",
+      "department": "TRD",
+      "assetId": "6773f1a5-29ae-495e-8c8f-62aefe041828",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": "deefac0f-ee16-46e7-9210-bef77f8e1431",
+      "workType": "OHE_MAINTENANCE",
+      "criticality": "CRITICAL",
+      "urgency": "CRITICAL",
+      "dueDate": "2026-09-10T00:00:00.000Z",
+      "estimatedDurationMinutes": 152,
+      "requiredIsolation": "POWER_ISOLATION",
+      "requiredPower": "TRACTION_POWER_OFF",
+      "requiredResources": [
+        {
+          "resourceId": "d9ca3027-42d2-4ad6-a198-d51c6a117324",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "7f805a6b-d2af-47c3-af98-453adb4acd02",
+      "department": "ENGINEERING",
+      "assetId": "240e4fab-1bde-4f52-9168-f68f20b0e4d7",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": "ce16db30-327f-43a0-8ceb-43b16b439bcd",
+      "workType": "POINTS_CROSSING_MAINTENANCE",
+      "criticality": "CRITICAL",
+      "urgency": "CRITICAL",
+      "dueDate": "2026-09-10T00:00:00.000Z",
+      "estimatedDurationMinutes": 171,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "dfd8890a-5e97-4625-8b6a-cab223bd1a7e",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "4422b394-c880-4195-9a75-de1857450741",
+      "department": "S_AND_T",
+      "assetId": "f818e6ff-74ee-41ac-811e-e2351ec56f37",
+      "assetCriticality": "LOW",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": "3fccde5a-fca6-41df-83a6-de8eb555e3ac",
+      "workType": "INTERLOCKING_UPGRADE",
+      "criticality": "LOW",
+      "urgency": "LOW",
+      "dueDate": "2026-09-10T00:00:00.000Z",
+      "estimatedDurationMinutes": 276,
+      "requiredIsolation": "SIGNAL_ISOLATION",
+      "requiredPower": "LOW_VOLTAGE",
+      "requiredResources": [
+        {
+          "resourceId": "efe92716-7496-418b-a856-d8c3d5d8b536",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "657b959c-133a-402c-8d3a-8b2c3656c1e7",
+      "department": "ENGINEERING",
+      "assetId": "42590b6b-78db-4016-8220-bdcb10a52a89",
+      "assetCriticality": "HIGH",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": "f35df3db-0c20-4281-b8a1-93cead41dc3e",
+      "workType": "GENERAL_INSPECTION",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-13T00:00:00.000Z",
+      "estimatedDurationMinutes": 80,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "1813efa4-1f9a-4f98-b86b-c2e2979b15d3",
+      "department": "TRD",
+      "assetId": "cbccaf2c-8677-416a-a442-b60b61c8386a",
+      "assetCriticality": "MEDIUM",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": "53c8706a-7df4-455c-9426-406cc5eb7260",
+      "workType": "OHE_MAINTENANCE",
+      "criticality": "MEDIUM",
+      "urgency": "MEDIUM",
+      "dueDate": "2026-09-13T00:00:00.000Z",
+      "estimatedDurationMinutes": 121,
+      "requiredIsolation": "POWER_ISOLATION",
+      "requiredPower": "TRACTION_POWER_OFF",
+      "requiredResources": [
+        {
+          "resourceId": "0148e81a-465e-404d-869f-3ad0d9f7e01e",
+          "quantity": 1
+        }
+      ],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "e36259d5-a0cd-4bb4-8f25-6aa2d8d8396f",
+      "department": "ENGINEERING",
+      "assetId": "30fcc04d-9c0d-4a2f-ad9e-919e80ff1e4f",
+      "assetCriticality": "HIGH",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": "769b2284-5a83-477d-9863-0d3792cf7f84",
+      "workType": "BALLAST_CLEANING",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-13T00:00:00.000Z",
+      "estimatedDurationMinutes": 332,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "3f690861-b64a-4fa3-ad1a-fce75d4f42c5",
+          "quantity": 1
+        },
+        {
+          "resourceId": "f9c33dfd-4164-4bd3-96b3-9799977cd89a",
+          "quantity": 1
+        }
+      ],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "1bcc1cf9-c33a-4626-9291-7685854cbe9d",
+      "department": "ENGINEERING",
+      "assetId": "45d85332-e88c-4e64-9a2a-9384548655f3",
+      "assetCriticality": "HIGH",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": "769b2284-5a83-477d-9863-0d3792cf7f84",
+      "workType": "TRACK_RENEWAL",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-13T00:00:00.000Z",
+      "estimatedDurationMinutes": 306,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "3f690861-b64a-4fa3-ad1a-fce75d4f42c5",
+          "quantity": 1
+        },
+        {
+          "resourceId": "740fcd1b-4648-4e7b-9cb8-e3c105757dcc",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "9f4a55b8-1b2b-45ed-9e8c-141de1dc5934",
+      "department": "ENGINEERING",
+      "assetId": "562eab36-77c8-4a87-bc31-ceb0e898be46",
+      "assetCriticality": "HIGH",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": "cf77216d-3970-48f4-af8d-03f9c28f3878",
+      "workType": "BRIDGE_INSPECTION",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-12T00:00:00.000Z",
+      "estimatedDurationMinutes": 140,
+      "requiredIsolation": "NONE",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "f7051549-cfde-4c7f-b6e4-98fc773cdaee",
+          "quantity": 1
+        },
+        {
+          "resourceId": "18044918-9124-4ff3-9fce-56aa30305575",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "0c7971cb-10ea-4f5f-a112-0f38187dd687",
+      "department": "ENGINEERING",
+      "assetId": "191aafe1-0559-4dc4-8ced-c07aedcea137",
+      "assetCriticality": "LOW",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": "cf77216d-3970-48f4-af8d-03f9c28f3878",
+      "workType": "BALLAST_CLEANING",
+      "criticality": "LOW",
+      "urgency": "LOW",
+      "dueDate": "2026-09-12T00:00:00.000Z",
+      "estimatedDurationMinutes": 313,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "f7051549-cfde-4c7f-b6e4-98fc773cdaee",
+          "quantity": 1
+        },
+        {
+          "resourceId": "f9c33dfd-4164-4bd3-96b3-9799977cd89a",
+          "quantity": 1
+        }
+      ],
+      "status": "VERIFIED"
+    },
+    {
+      "id": "7a3c880f-1a82-454b-a822-ede26972e36d",
+      "department": "ENGINEERING",
+      "assetId": "dcb821ba-d9a5-4d88-8e59-db97bc077e30",
+      "assetCriticality": "HIGH",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": "deefac0f-ee16-46e7-9210-bef77f8e1431",
+      "workType": "RAIL_GRINDING",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-15T00:00:00.000Z",
+      "estimatedDurationMinutes": 158,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "4d868615-8c9e-4efc-bf6c-475fbe0e4bf5",
+          "quantity": 1
+        },
+        {
+          "resourceId": "20117788-4eec-4040-b579-caff9ad4eab3",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "baa74c79-baf3-43af-8c7a-affaf7baa354",
+      "department": "ENGINEERING",
+      "assetId": "240e4fab-1bde-4f52-9168-f68f20b0e4d7",
+      "assetCriticality": "CRITICAL",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": "ce16db30-327f-43a0-8ceb-43b16b439bcd",
+      "workType": "RAIL_GRINDING",
+      "criticality": "CRITICAL",
+      "urgency": "CRITICAL",
+      "dueDate": "2026-09-15T00:00:00.000Z",
+      "estimatedDurationMinutes": 220,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "dfd8890a-5e97-4625-8b6a-cab223bd1a7e",
+          "quantity": 1
+        },
+        {
+          "resourceId": "20117788-4eec-4040-b579-caff9ad4eab3",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "57aa09a3-23e1-417b-980f-fb87f8f0fe72",
+      "department": "ENGINEERING",
+      "assetId": "30fcc04d-9c0d-4a2f-ad9e-919e80ff1e4f",
+      "assetCriticality": "HIGH",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": "769b2284-5a83-477d-9863-0d3792cf7f84",
+      "workType": "BALLAST_CLEANING",
+      "criticality": "HIGH",
+      "urgency": "HIGH",
+      "dueDate": "2026-09-13T00:00:00.000Z",
+      "estimatedDurationMinutes": 257,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "3f690861-b64a-4fa3-ad1a-fce75d4f42c5",
+          "quantity": 1
+        },
+        {
+          "resourceId": "f9c33dfd-4164-4bd3-96b3-9799977cd89a",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "54b26a69-2542-4034-8de8-59c929ccd73f",
+      "department": "ENGINEERING",
+      "assetId": "70d6027d-8e93-4d3b-a2b7-76324b0d3075",
+      "assetCriticality": "LOW",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "segmentId": "8df94753-1ae5-4aa2-9547-f9a58e0e49b2",
+      "workType": "BALLAST_CLEANING",
+      "criticality": "LOW",
+      "urgency": "LOW",
+      "dueDate": "2026-09-13T00:00:00.000Z",
+      "estimatedDurationMinutes": 231,
+      "requiredIsolation": "TRACK_ISOLATION",
+      "requiredPower": "NONE",
+      "requiredResources": [
+        {
+          "resourceId": "0dd49cda-f532-47e3-ae86-bcb6e7e822a4",
+          "quantity": 1
+        },
+        {
+          "resourceId": "f9c33dfd-4164-4bd3-96b3-9799977cd89a",
+          "quantity": 1
+        }
+      ],
+      "status": "OPEN"
+    }
+  ],
+  "requestDependencies": [
+    {
+      "predecessorId": "fa104d5d-d11e-4d7c-974d-6259fd74f95a",
+      "successorId": "40ce4b7a-a769-473b-86fd-8b2afde883b5"
+    },
+    {
+      "predecessorId": "8a1a77e8-afa6-4ca7-b6b8-5e71b3251576",
+      "successorId": "38f68117-b8bf-4b50-a099-aab4f5613169"
+    }
+  ],
+  "taskCompatibilityRules": [
+    {
+      "workTypeA": "RAIL_GRINDING",
+      "workTypeB": "SIGNAL_MAINTENANCE",
+      "department": null,
+      "compatible": true
+    },
+    {
+      "workTypeA": "GENERAL_INSPECTION",
+      "workTypeB": "TRACK_RENEWAL",
+      "department": null,
+      "compatible": false
+    }
+  ],
+  "blockWindows": [
+    {
+      "id": "20b21bb1-f754-4c4e-bf55-22e2540a6d00",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": null,
+      "startTime": "2026-09-08T01:00:00.000Z",
+      "endTime": "2026-09-08T05:00:00.000Z",
+      "durationMinutes": 240,
+      "permittedDepartments": [
+        "ENGINEERING",
+        "TRD",
+        "S_AND_T"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION",
+        "POWER_ISOLATION",
+        "SIGNAL_ISOLATION",
+        "FULL_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE",
+        "TRACTION_POWER_OFF",
+        "AUXILIARY_POWER",
+        "LOW_VOLTAGE"
+      ],
+      "maxConcurrentResources": 3
+    },
+    {
+      "id": "028f96de-b42e-44c0-a7af-dbe3acca40f9",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": null,
+      "startTime": "2026-09-14T01:00:00.000Z",
+      "endTime": "2026-09-14T05:00:00.000Z",
+      "durationMinutes": 240,
+      "permittedDepartments": [
+        "ENGINEERING",
+        "TRD",
+        "S_AND_T"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION",
+        "POWER_ISOLATION",
+        "SIGNAL_ISOLATION",
+        "FULL_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE",
+        "TRACTION_POWER_OFF",
+        "AUXILIARY_POWER",
+        "LOW_VOLTAGE"
+      ],
+      "maxConcurrentResources": 3
+    },
+    {
+      "id": "6ccd944b-e645-4082-99ee-bb80b9e10afa",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": null,
+      "startTime": "2026-09-18T01:00:00.000Z",
+      "endTime": "2026-09-18T02:30:00.000Z",
+      "durationMinutes": 90,
+      "permittedDepartments": [
+        "ENGINEERING"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE"
+      ],
+      "maxConcurrentResources": 1
+    },
+    {
+      "id": "b0ee1145-18e7-4fb3-be70-554e26ad9c16",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": null,
+      "startTime": "2026-09-09T01:00:00.000Z",
+      "endTime": "2026-09-09T05:00:00.000Z",
+      "durationMinutes": 240,
+      "permittedDepartments": [
+        "ENGINEERING",
+        "TRD",
+        "S_AND_T"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION",
+        "POWER_ISOLATION",
+        "SIGNAL_ISOLATION",
+        "FULL_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE",
+        "TRACTION_POWER_OFF",
+        "AUXILIARY_POWER",
+        "LOW_VOLTAGE"
+      ],
+      "maxConcurrentResources": 3
+    },
+    {
+      "id": "eb0f6f81-bd4d-4839-931a-dc7ba079c2aa",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": null,
+      "startTime": "2026-09-15T01:00:00.000Z",
+      "endTime": "2026-09-15T05:00:00.000Z",
+      "durationMinutes": 240,
+      "permittedDepartments": [
+        "ENGINEERING",
+        "TRD",
+        "S_AND_T"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION",
+        "POWER_ISOLATION",
+        "SIGNAL_ISOLATION",
+        "FULL_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE",
+        "TRACTION_POWER_OFF",
+        "AUXILIARY_POWER",
+        "LOW_VOLTAGE"
+      ],
+      "maxConcurrentResources": 3
+    },
+    {
+      "id": "63903ff1-8f14-49a5-acdc-879a8f32062c",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": null,
+      "startTime": "2026-09-19T01:00:00.000Z",
+      "endTime": "2026-09-19T02:30:00.000Z",
+      "durationMinutes": 90,
+      "permittedDepartments": [
+        "TRD"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE"
+      ],
+      "maxConcurrentResources": 1
+    },
+    {
+      "id": "ddc2e1bd-9062-4942-8263-4b36f6218388",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": null,
+      "startTime": "2026-09-10T01:00:00.000Z",
+      "endTime": "2026-09-10T05:00:00.000Z",
+      "durationMinutes": 240,
+      "permittedDepartments": [
+        "ENGINEERING",
+        "TRD",
+        "S_AND_T"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION",
+        "POWER_ISOLATION",
+        "SIGNAL_ISOLATION",
+        "FULL_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE",
+        "TRACTION_POWER_OFF",
+        "AUXILIARY_POWER",
+        "LOW_VOLTAGE"
+      ],
+      "maxConcurrentResources": 3
+    },
+    {
+      "id": "d280860a-ea10-47fd-8f88-288c51187ad7",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": null,
+      "startTime": "2026-09-16T01:00:00.000Z",
+      "endTime": "2026-09-16T05:00:00.000Z",
+      "durationMinutes": 240,
+      "permittedDepartments": [
+        "ENGINEERING",
+        "TRD",
+        "S_AND_T"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION",
+        "POWER_ISOLATION",
+        "SIGNAL_ISOLATION",
+        "FULL_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE",
+        "TRACTION_POWER_OFF",
+        "AUXILIARY_POWER",
+        "LOW_VOLTAGE"
+      ],
+      "maxConcurrentResources": 3
+    },
+    {
+      "id": "78fe18f5-f775-4638-b590-c03814c290de",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": null,
+      "startTime": "2026-09-20T01:00:00.000Z",
+      "endTime": "2026-09-20T02:30:00.000Z",
+      "durationMinutes": 90,
+      "permittedDepartments": [
+        "S_AND_T"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE"
+      ],
+      "maxConcurrentResources": 1
+    },
+    {
+      "id": "d9b0ac0c-2b4a-4d7a-a514-b460c83e0a06",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "segmentId": null,
+      "startTime": "2026-09-11T01:00:00.000Z",
+      "endTime": "2026-09-11T05:00:00.000Z",
+      "durationMinutes": 240,
+      "permittedDepartments": [
+        "ENGINEERING",
+        "TRD",
+        "S_AND_T"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION",
+        "POWER_ISOLATION",
+        "SIGNAL_ISOLATION",
+        "FULL_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE",
+        "TRACTION_POWER_OFF",
+        "AUXILIARY_POWER",
+        "LOW_VOLTAGE"
+      ],
+      "maxConcurrentResources": 3
+    },
+    {
+      "id": "d86744ef-ccd1-44ff-8300-7c19d3c34623",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "segmentId": null,
+      "startTime": "2026-09-17T01:00:00.000Z",
+      "endTime": "2026-09-17T05:00:00.000Z",
+      "durationMinutes": 240,
+      "permittedDepartments": [
+        "ENGINEERING",
+        "TRD",
+        "S_AND_T"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION",
+        "POWER_ISOLATION",
+        "SIGNAL_ISOLATION",
+        "FULL_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE",
+        "TRACTION_POWER_OFF",
+        "AUXILIARY_POWER",
+        "LOW_VOLTAGE"
+      ],
+      "maxConcurrentResources": 3
+    },
+    {
+      "id": "2afe1808-80ff-4ba5-9489-a4de54f30185",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "segmentId": null,
+      "startTime": "2026-09-21T01:00:00.000Z",
+      "endTime": "2026-09-21T02:30:00.000Z",
+      "durationMinutes": 90,
+      "permittedDepartments": [
+        "ENGINEERING"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE"
+      ],
+      "maxConcurrentResources": 1
+    },
+    {
+      "id": "2aa75ef7-a9a3-41e2-84c2-147ce4e6a2c9",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": null,
+      "startTime": "2026-09-12T01:00:00.000Z",
+      "endTime": "2026-09-12T05:00:00.000Z",
+      "durationMinutes": 240,
+      "permittedDepartments": [
+        "ENGINEERING",
+        "TRD",
+        "S_AND_T"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION",
+        "POWER_ISOLATION",
+        "SIGNAL_ISOLATION",
+        "FULL_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE",
+        "TRACTION_POWER_OFF",
+        "AUXILIARY_POWER",
+        "LOW_VOLTAGE"
+      ],
+      "maxConcurrentResources": 3
+    },
+    {
+      "id": "72cdae52-6210-4d61-86eb-9292b5c7e4e1",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": null,
+      "startTime": "2026-09-18T01:00:00.000Z",
+      "endTime": "2026-09-18T05:00:00.000Z",
+      "durationMinutes": 240,
+      "permittedDepartments": [
+        "ENGINEERING",
+        "TRD",
+        "S_AND_T"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION",
+        "POWER_ISOLATION",
+        "SIGNAL_ISOLATION",
+        "FULL_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE",
+        "TRACTION_POWER_OFF",
+        "AUXILIARY_POWER",
+        "LOW_VOLTAGE"
+      ],
+      "maxConcurrentResources": 3
+    },
+    {
+      "id": "a4560863-db5d-4798-8c03-16c19932ef96",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": null,
+      "startTime": "2026-09-22T01:00:00.000Z",
+      "endTime": "2026-09-22T02:30:00.000Z",
+      "durationMinutes": 90,
+      "permittedDepartments": [
+        "TRD"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE"
+      ],
+      "maxConcurrentResources": 1
+    },
+    {
+      "id": "afb159c6-cef1-47ea-ba3d-057d54024262",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": null,
+      "startTime": "2026-09-13T01:00:00.000Z",
+      "endTime": "2026-09-13T05:00:00.000Z",
+      "durationMinutes": 240,
+      "permittedDepartments": [
+        "ENGINEERING",
+        "TRD",
+        "S_AND_T"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION",
+        "POWER_ISOLATION",
+        "SIGNAL_ISOLATION",
+        "FULL_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE",
+        "TRACTION_POWER_OFF",
+        "AUXILIARY_POWER",
+        "LOW_VOLTAGE"
+      ],
+      "maxConcurrentResources": 3
+    },
+    {
+      "id": "0cc059b3-014f-480d-84eb-b8f75559281f",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": null,
+      "startTime": "2026-09-19T01:00:00.000Z",
+      "endTime": "2026-09-19T05:00:00.000Z",
+      "durationMinutes": 240,
+      "permittedDepartments": [
+        "ENGINEERING",
+        "TRD",
+        "S_AND_T"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION",
+        "POWER_ISOLATION",
+        "SIGNAL_ISOLATION",
+        "FULL_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE",
+        "TRACTION_POWER_OFF",
+        "AUXILIARY_POWER",
+        "LOW_VOLTAGE"
+      ],
+      "maxConcurrentResources": 3
+    },
+    {
+      "id": "bb580edc-03ab-4742-908e-9f83d5535fe9",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": null,
+      "startTime": "2026-09-23T01:00:00.000Z",
+      "endTime": "2026-09-23T02:30:00.000Z",
+      "durationMinutes": 90,
+      "permittedDepartments": [
+        "S_AND_T"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE"
+      ],
+      "maxConcurrentResources": 1
+    },
+    {
+      "id": "e71d47ff-4e03-4092-b95c-a2afd67549e3",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": null,
+      "startTime": "2026-09-12T01:00:00.000Z",
+      "endTime": "2026-09-12T07:00:00.000Z",
+      "durationMinutes": 360,
+      "permittedDepartments": [
+        "ENGINEERING",
+        "TRD"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION",
+        "POWER_ISOLATION",
+        "SIGNAL_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE",
+        "TRACTION_POWER_OFF",
+        "LOW_VOLTAGE"
+      ],
+      "maxConcurrentResources": 2
+    },
+    {
+      "id": "c0942589-70f8-46be-93b8-c8369f359333",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": null,
+      "startTime": "2026-09-12T01:00:00.000Z",
+      "endTime": "2026-09-12T07:00:00.000Z",
+      "durationMinutes": 360,
+      "permittedDepartments": [
+        "ENGINEERING",
+        "S_AND_T"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION",
+        "POWER_ISOLATION",
+        "SIGNAL_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE",
+        "TRACTION_POWER_OFF",
+        "LOW_VOLTAGE"
+      ],
+      "maxConcurrentResources": 2
+    },
+    {
+      "id": "af27f044-d28c-4bae-9c10-ee8d29364b81",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": null,
+      "startTime": "2026-09-12T01:00:00.000Z",
+      "endTime": "2026-09-12T07:00:00.000Z",
+      "durationMinutes": 360,
+      "permittedDepartments": [
+        "ENGINEERING",
+        "TRD"
+      ],
+      "allowsIsolationTypes": [
+        "TRACK_ISOLATION",
+        "POWER_ISOLATION",
+        "SIGNAL_ISOLATION"
+      ],
+      "allowsPowerTypes": [
+        "NONE",
+        "TRACTION_POWER_OFF",
+        "LOW_VOLTAGE"
+      ],
+      "maxConcurrentResources": 2
+    }
+  ],
+  "trainMovements": [
+    {
+      "id": "8e02f751-17f4-44a1-a8e0-1969b12927dc",
+      "trainNumber": "10002",
+      "trainType": "PASSENGER",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-10T06:40:00.000Z",
+      "scheduledEnd": "2026-09-10T09:16:00.000Z",
+      "priority": 7
+    },
+    {
+      "id": "ad540c8c-7055-4fa3-9940-961114791045",
+      "trainNumber": "10003",
+      "trainType": "PASSENGER",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-10T18:48:00.000Z",
+      "scheduledEnd": "2026-09-10T20:30:00.000Z",
+      "priority": 7
+    },
+    {
+      "id": "a7eb9376-fc90-489a-bd02-e41d9084f59d",
+      "trainNumber": "10004",
+      "trainType": "EXPRESS",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-10T11:32:00.000Z",
+      "scheduledEnd": "2026-09-10T13:10:00.000Z",
+      "priority": 9
+    },
+    {
+      "id": "fc74a8ea-86a2-45f7-b9f2-3237c9a36cce",
+      "trainNumber": "10005",
+      "trainType": "GOODS",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-12T23:56:00.000Z",
+      "scheduledEnd": "2026-09-13T02:32:00.000Z",
+      "priority": 3
+    },
+    {
+      "id": "058425eb-f3b0-43b5-a329-91672230baba",
+      "trainNumber": "10006",
+      "trainType": "GOODS",
+      "corridorId": "675f73f6-2091-4bbd-b0a7-d2cd74b141d3",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-08T00:30:00.000Z",
+      "scheduledEnd": "2026-09-08T02:00:00.000Z",
+      "priority": 3
+    },
+    {
+      "id": "c5db9a4b-2094-4cb7-838d-3c1dcdf3e63b",
+      "trainNumber": "10007",
+      "trainType": "PASSENGER",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-09T09:31:00.000Z",
+      "scheduledEnd": "2026-09-09T11:32:00.000Z",
+      "priority": 7
+    },
+    {
+      "id": "f0d686bd-c1d6-4293-b87d-a67f6fe5da3b",
+      "trainNumber": "10008",
+      "trainType": "PASSENGER",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-09T17:50:00.000Z",
+      "scheduledEnd": "2026-09-09T19:58:00.000Z",
+      "priority": 7
+    },
+    {
+      "id": "4c028fdd-2688-45e5-afe4-7d2b0641e1e8",
+      "trainNumber": "10009",
+      "trainType": "EXPRESS",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-09T12:20:00.000Z",
+      "scheduledEnd": "2026-09-09T13:53:00.000Z",
+      "priority": 9
+    },
+    {
+      "id": "e4e09b02-af8a-45da-831f-bd0d0dbe8783",
+      "trainNumber": "10010",
+      "trainType": "GOODS",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-11T20:42:00.000Z",
+      "scheduledEnd": "2026-09-11T23:57:00.000Z",
+      "priority": 3
+    },
+    {
+      "id": "0c346785-b9c7-46b2-89f7-3b9d2e5ea9e6",
+      "trainNumber": "10011",
+      "trainType": "GOODS",
+      "corridorId": "0c4ee16f-ea86-42eb-83f8-2cdeaef6e299",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-09T00:30:00.000Z",
+      "scheduledEnd": "2026-09-09T02:00:00.000Z",
+      "priority": 3
+    },
+    {
+      "id": "94fc6b4e-c123-4897-a9ad-96172898e05c",
+      "trainNumber": "10012",
+      "trainType": "PASSENGER",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-07T08:28:00.000Z",
+      "scheduledEnd": "2026-09-07T11:24:00.000Z",
+      "priority": 7
+    },
+    {
+      "id": "57cd0961-6aa4-4f39-9247-4eb4b9fa270e",
+      "trainNumber": "10013",
+      "trainType": "PASSENGER",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-07T18:33:00.000Z",
+      "scheduledEnd": "2026-09-07T21:29:00.000Z",
+      "priority": 7
+    },
+    {
+      "id": "678629e0-62b4-4355-8fdd-36afd030a08a",
+      "trainNumber": "10014",
+      "trainType": "EXPRESS",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-07T12:08:00.000Z",
+      "scheduledEnd": "2026-09-07T13:33:00.000Z",
+      "priority": 9
+    },
+    {
+      "id": "fe228666-9c37-4379-ada4-eb40c2ee8864",
+      "trainNumber": "10015",
+      "trainType": "GOODS",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-09T21:23:00.000Z",
+      "scheduledEnd": "2026-09-10T00:27:00.000Z",
+      "priority": 3
+    },
+    {
+      "id": "cc7764be-0662-4276-a9a3-3b6b25e32071",
+      "trainNumber": "10016",
+      "trainType": "GOODS",
+      "corridorId": "2ec6d483-16bc-4edc-9d2a-48cd90b922cb",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-10T00:30:00.000Z",
+      "scheduledEnd": "2026-09-10T02:00:00.000Z",
+      "priority": 3
+    },
+    {
+      "id": "c62c7936-92e2-49fb-93ff-d9a6483cd0e3",
+      "trainNumber": "10017",
+      "trainType": "PASSENGER",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-07T07:57:00.000Z",
+      "scheduledEnd": "2026-09-07T10:32:00.000Z",
+      "priority": 7
+    },
+    {
+      "id": "d2fe9832-a022-4429-a81c-b744f87ab3bc",
+      "trainNumber": "10018",
+      "trainType": "PASSENGER",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-07T18:48:00.000Z",
+      "scheduledEnd": "2026-09-07T20:36:00.000Z",
+      "priority": 7
+    },
+    {
+      "id": "1d7d862e-e4ce-46d0-932e-983460c0fba6",
+      "trainNumber": "10019",
+      "trainType": "EXPRESS",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-07T12:25:00.000Z",
+      "scheduledEnd": "2026-09-07T14:11:00.000Z",
+      "priority": 9
+    },
+    {
+      "id": "06d49a9c-cc53-40c5-9819-e48d32f76a1c",
+      "trainNumber": "10020",
+      "trainType": "GOODS",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-09T23:47:00.000Z",
+      "scheduledEnd": "2026-09-10T02:17:00.000Z",
+      "priority": 3
+    },
+    {
+      "id": "64cb3a99-18f1-4361-8b9c-02a8ef20cddd",
+      "trainNumber": "10021",
+      "trainType": "GOODS",
+      "corridorId": "13c43d6b-7daa-44b5-9831-dc31289a8dc2",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-11T00:30:00.000Z",
+      "scheduledEnd": "2026-09-11T02:00:00.000Z",
+      "priority": 3
+    },
+    {
+      "id": "29ef6076-426a-4dae-b6fc-1944bde3eeba",
+      "trainNumber": "10022",
+      "trainType": "PASSENGER",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-10T06:25:00.000Z",
+      "scheduledEnd": "2026-09-10T09:09:00.000Z",
+      "priority": 7
+    },
+    {
+      "id": "f474cdaf-4f7d-4160-8cd9-d28be8b16d18",
+      "trainNumber": "10023",
+      "trainType": "PASSENGER",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-10T18:23:00.000Z",
+      "scheduledEnd": "2026-09-10T20:05:00.000Z",
+      "priority": 7
+    },
+    {
+      "id": "2d5885a7-be5e-4df6-b9d2-db410effa5e5",
+      "trainNumber": "10024",
+      "trainType": "EXPRESS",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-10T12:16:00.000Z",
+      "scheduledEnd": "2026-09-10T14:08:00.000Z",
+      "priority": 9
+    },
+    {
+      "id": "59926f8f-3d6b-46b6-9b19-52d87807cb28",
+      "trainNumber": "10025",
+      "trainType": "GOODS",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-12T23:34:00.000Z",
+      "scheduledEnd": "2026-09-13T01:37:00.000Z",
+      "priority": 3
+    },
+    {
+      "id": "20cf6365-48a9-4c8a-9e64-a651368ed160",
+      "trainNumber": "10026",
+      "trainType": "GOODS",
+      "corridorId": "58dfee85-a3a1-43e8-801d-991a2d982d31",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-12T00:30:00.000Z",
+      "scheduledEnd": "2026-09-12T02:00:00.000Z",
+      "priority": 3
+    },
+    {
+      "id": "d35baeda-b182-47d9-959a-1b40aad61799",
+      "trainNumber": "10027",
+      "trainType": "PASSENGER",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-10T06:05:00.000Z",
+      "scheduledEnd": "2026-09-10T07:38:00.000Z",
+      "priority": 7
+    },
+    {
+      "id": "7621b464-98d7-45ab-9428-88e049efb900",
+      "trainNumber": "10028",
+      "trainType": "PASSENGER",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-10T19:36:00.000Z",
+      "scheduledEnd": "2026-09-10T21:43:00.000Z",
+      "priority": 7
+    },
+    {
+      "id": "1a248c7d-2153-43f7-aa80-792773f7ae34",
+      "trainNumber": "10029",
+      "trainType": "EXPRESS",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-10T13:34:00.000Z",
+      "scheduledEnd": "2026-09-10T15:32:00.000Z",
+      "priority": 9
+    },
+    {
+      "id": "a230dca9-6591-43c1-8860-6c04be554692",
+      "trainNumber": "10030",
+      "trainType": "GOODS",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-12T23:28:00.000Z",
+      "scheduledEnd": "2026-09-13T01:43:00.000Z",
+      "priority": 3
+    },
+    {
+      "id": "dde17229-6446-4b68-acb9-3841dd3b9982",
+      "trainNumber": "10031",
+      "trainType": "GOODS",
+      "corridorId": "a8bc734a-3756-4b52-b554-3a3a9dad8501",
+      "segmentId": null,
+      "trackResourceId": null,
+      "scheduledStart": "2026-09-13T00:30:00.000Z",
+      "scheduledEnd": "2026-09-13T02:00:00.000Z",
+      "priority": 3
+    }
+  ],
+  "options": {
+    "timeLimitSeconds": 20,
+    "randomSeed": 42,
+    "asOf": "2026-09-05T00:00:00.000Z"
+  }
+}

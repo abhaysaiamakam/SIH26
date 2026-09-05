@@ -25,9 +25,13 @@ Endpoints below are implemented incrementally by phase - see `docs/IMPLEMENTATIO
 - `GET /block-windows?scenarioId=&corridorId=` — defaults to the most recently generated scenario when `scenarioId` is omitted.
 - `GET /train-movements?scenarioId=&corridorId=` — same default-scenario behavior.
 
+## Optimization (Phase 4)
+
+- `POST /planning-runs` — body `{ scenarioId, strategy: "FIRST_FEASIBLE" | "PRIORITY_FIRST" | "OPTIMIZED" }`. 404 if the scenario doesn't exist, 400 if the strategy is invalid. Returns `202 Accepted` with the created `PlanningRun` (`status: "PENDING"`) immediately - the run itself executes asynchronously (spawns the Python optimizer as a subprocess; see `docs/OPTIMIZATION_MODEL.md`).
+- `GET /planning-runs/:id` — poll this until `status` is `SUCCEEDED` or `FAILED`. On success, `resultPlanId`/`objectiveValue`/`solverStatus` are populated and a full `Plan` → `PlanRevision` → `PlanBlock`/`PlanTask` tree has been persisted. On failure, `errorMessage` explains what went wrong (subprocess timeout, non-zero exit, invalid output) - never silent.
+
 ## Planned (later phases)
 
-- `POST /planning-runs`, `GET /planning-runs/:id` — Phase 4 (optimizer integration).
 - `GET /plans`, `GET /plans/:id`, `POST /plans/:id/approve`, `POST /plans/:id/reject` — Phase 5.
 - `POST /what-if` — Phase 5.
 - `GET /analytics` — Phase 7.

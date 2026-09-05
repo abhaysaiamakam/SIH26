@@ -74,9 +74,12 @@ export interface OptimizerTrainMovementInput {
   priority: number;
 }
 
-export interface OptimizerConfigInput {
-  priorityWeights: Record<string, number>;
-  objectiveWeights: Record<string, number>;
+export interface OptimizerTrackResourceInput {
+  id: string;
+  code: string;
+  type: string;
+  corridorId: string | null;
+  capacity: number;
 }
 
 export interface OptimizerOptions {
@@ -89,14 +92,17 @@ export interface OptimizerOptions {
 export interface OptimizerRunInput {
   scenarioId: string;
   strategy: StrategyType;
+  /** Informational/audit only - the optimizer always loads the live weights
+   *  itself from packages/config/v1, the single source of truth shared with
+   *  this package. This field records which version was in effect. */
   configVersion: string;
   corridors: OptimizerCorridorInput[];
+  trackResources: OptimizerTrackResourceInput[];
   maintenanceRequests: OptimizerMaintenanceRequestInput[];
   requestDependencies: OptimizerDependencyInput[];
   taskCompatibilityRules: OptimizerCompatibilityRuleInput[];
   blockWindows: OptimizerBlockWindowInput[];
   trainMovements: OptimizerTrainMovementInput[];
-  config: OptimizerConfigInput;
   options: OptimizerOptions;
 }
 

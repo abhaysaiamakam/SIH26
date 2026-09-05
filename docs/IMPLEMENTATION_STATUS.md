@@ -42,6 +42,18 @@ This document tracks exactly what is built versus simplified/deferred, updated a
 - `services/optimizer/tests/`: 39 passing pytest cases covering every rejection reason, the overdue critical rule, explicit-rule overrides in both directions, bundle discovery (positive and negative cases), and dependency feasibility (success, failure, no-predecessor-candidate, multiple-predecessor-candidates).
 - See `docs/OPTIMIZATION_MODEL.md` for the full pipeline description.
 
+## Phase 4 — Three strategies + CP-SAT + NestJS integration: COMPLETE
+
+- `services/optimizer/src/strategies/{first_feasible,priority_first,optimized}.py`: all three consume the identical candidate list and the identical `core/conflicts.py` conflict predicate; `optimized.py` is a real OR-Tools CP-SAT model (binary `x[c]` per candidate, per-task ≤1 constraints, pairwise conflict constraints, auxiliary block-used and missed-bundle-opportunity penalty variables, integer-scaled objective, pinned `num_search_workers=1` and `random_seed` for determinism).
+- `core/result.py` builds the shared objective/breakdown/plan-block/task-outcome result identically regardless of which strategy produced the selection - directly tested that CP-SAT's objective is never worse than either greedy strategy's (a structural property of solving the same ILP any greedy selection is a feasible solution to, not just an empirical observation).
+- `src/schemas.py` (pydantic) + `src/cli.py`: the stdin/stdout contract invoked by NestJS. Exit 0 always means "a result was produced" (`SUCCEEDED` or a legitimate `NO_FEASIBLE_PLAN`); non-zero means a real failure, with a clear stderr message.
+- `packages/test-fixtures/scripts/export-optimizer-fixture.ts` + `packages/test-fixtures/optimizer/scenario-seed-42.json`: a real scenario exported from the TS generator, parsed end-to-end by `services/optimizer/tests/test_cli.py` - keeps the TypeScript contract and the pydantic mirror honest against each other without codegen.
+- `apps/api/src/optimization/`: `OptimizerClientService` (subprocess spawn with a hard timeout), `PlanningRunsService` (`POST /planning-runs` creates a `PlanningRun` and fires the job un-awaited, `202` immediately; persists `Plan`/`PlanRevision`/`PlanBlock`/`PlanTask` transactionally on success; marks `FAILED` with `errorMessage` on any failure), `GET /planning-runs/:id` for polling.
+- **Verified against the real seeded scenario in this session** (66 maintenance requests, 21 block windows, 438 candidates): `FIRST_FEASIBLE` → objective ≈2377-2403 (varies slightly by run context, e.g. extra manually-created requests), 0 bundles; `PRIORITY_FIRST` → objective ≈2783-2808, ~11 bundles; `OPTIMIZED` → objective ≈3732-3791 (solved to `OPTIMAL` in ~40ms), ~10 bundles - the three strategies visibly and structurally diverge on real data, not a canned example. Notably `OPTIMIZED` scheduled *fewer* raw tasks than the greedy strategies (51 vs 53) but achieved a much higher objective by prioritizing critical/overdue work - a genuine demonstration of optimization over naive counting.
+- `apps/api/test/planning-runs.e2e-spec.ts`: real HTTP + real Postgres + real Python subprocess, no mocks (404 on unknown scenario, 400 on invalid strategy, full `OPTIMIZED` run persisting a real `Plan` tree, `OPTIMIZED` vs `FIRST_FEASIBLE` divergence).
+- 55 pytest cases (up from 39 in Phase 3) + 15 Jest cases (11 unit + 4 e2e) in `apps/api`, all passing.
+- See `docs/OPTIMIZATION_MODEL.md` for the full strategy/CP-SAT/integration description.
+
 ## Upcoming
 
-Phase 4 (FIRST_FEASIBLE / PRIORITY_FIRST / CP-SAT OPTIMIZED strategies, `cli.py` stdin/stdout contract, and the NestJS `optimization` module wiring `POST/GET /planning-runs`) is next.
+Phase 5 (independent TS validator, Python simulator, plan approval with immutable revisions, the What-If engine, RBAC) is next.

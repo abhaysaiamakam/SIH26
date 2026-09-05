@@ -1,0 +1,19 @@
+{
+  "name": "@railopt/test-fixtures",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "export:optimizer": "ts-node scripts/export-optimizer-fixture.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "echo \"no tests in test-fixtures\" && exit 0"
+  },
+  "dependencies": {
+    "@railopt/contracts": "workspace:*",
+    "@railopt/data-synthetic": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}

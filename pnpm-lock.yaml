@@ -207,6 +207,25 @@ importers:
         specifier: ^5.6.3
         version: 5.9.3
 
+  packages/test-fixtures:
+    dependencies:
+      '@railopt/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@railopt/data-synthetic':
+        specifier: workspace:*
+        version: link:../../data/synthetic
+    devDependencies:
+      '@types/node':
+        specifier: ^22.10.2
+        version: 22.20.1
+      ts-node:
+        specifier: ^10.9.2
+        version: 10.9.2(@types/node@22.20.1)(typescript@5.9.3)
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
+
 packages:
 
   '@alloc/quick-lru@5.3.0':
