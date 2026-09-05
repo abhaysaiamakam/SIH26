@@ -13,5 +13,6 @@ __pycache__/
 venv/
 .pytest_cache/
 *.egg-info/
+*.tsbuildinfo
 data/synthetic/seeds/*.json
 !data/synthetic/seeds/seed-42.json
