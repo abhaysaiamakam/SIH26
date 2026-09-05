@@ -1,0 +1,624 @@
+// RAILOPT AI domain schema.
+// See docs/DOMAIN_MODEL.md for the narrative description of every model.
+// All timestamps are UTC (Timestamptz). All primary keys are UUIDs.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────── ENUMS ────────────────────────────────
+
+enum Department {
+  ENGINEERING
+  TRD
+  S_AND_T
+}
+
+enum WorkType {
+  TRACK_RENEWAL
+  RAIL_GRINDING
+  BALLAST_CLEANING
+  POINTS_CROSSING_MAINTENANCE
+  BRIDGE_INSPECTION
+  SIGNAL_MAINTENANCE
+  INTERLOCKING_UPGRADE
+  OHE_MAINTENANCE
+  TRACTION_SUBSTATION_MAINTENANCE
+  GENERAL_INSPECTION
+}
+
+enum Criticality {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum MaintenanceStatus {
+  OPEN
+  VERIFIED
+  PRIORITIZED
+  BLOCK_REQUESTED
+  SCHEDULED
+  IN_PROGRESS
+  COMPLETED
+  CLOSED
+}
+
+enum IsolationType {
+  NONE
+  TRACK_ISOLATION
+  POWER_ISOLATION
+  SIGNAL_ISOLATION
+  FULL_ISOLATION
+}
+
+enum PowerRequirement {
+  NONE
+  TRACTION_POWER_OFF
+  AUXILIARY_POWER
+  LOW_VOLTAGE
+}
+
+enum ResourceType {
+  MACHINE
+  CREW
+  MATERIAL
+  TOOL
+}
+
+enum TrainType {
+  PASSENGER
+  EXPRESS
+  GOODS
+  SUBURBAN
+}
+
+enum StrategyType {
+  FIRST_FEASIBLE
+  PRIORITY_FIRST
+  OPTIMIZED
+}
+
+enum PlanStatus {
+  DRAFT
+  VALIDATED
+  INVALID
+  APPROVED
+  REJECTED
+  SUPERSEDED
+}
+
+enum PlanningRunStatus {
+  PENDING
+  RUNNING
+  SUCCEEDED
+  FAILED
+}
+
+enum ValidationStatus {
+  VALID
+  INVALID
+}
+
+enum ViolationSeverity {
+  WARNING
+  ERROR
+  CRITICAL
+}
+
+enum ApprovalDecisionType {
+  APPROVED
+  REJECTED
+  RETURNED_FOR_REVISION
+}
+
+enum Role {
+  FIELD_ENGINEER
+  DEPARTMENT_PLANNER
+  DIVISIONAL_PLANNER
+  CONTROL_OPERATOR
+  MANAGEMENT
+  ADMIN
+}
+
+enum CandidateRejectionReason {
+  INSUFFICIENT_WINDOW_DURATION
+  RESOURCE_UNAVAILABLE
+  CORRIDOR_MISMATCH
+  ISOLATION_MISMATCH
+  POWER_REQUIREMENT_UNAVAILABLE
+  OPERATIONAL_CONFLICT
+  INCOMPATIBLE_WORK_TYPES
+  DEPENDENCY_NOT_FEASIBLE
+}
+
+enum ScenarioEventType {
+  CORRIDOR_UNAVAILABLE
+  NEW_CRITICAL_REQUEST
+  BLOCK_WINDOW_SHORTENED
+  ADDITIONAL_TRAIN_MOVEMENT
+  TASK_BECOMES_OVERDUE
+}
+
+enum ScenarioEventSource {
+  SYNTHETIC
+  WHAT_IF
+}
+
+// ───────────────────────────── REFERENCE ──────────────────────────────
+
+model Division {
+  id        String   @id @default(uuid()) @db.Uuid
+  code      String   @unique
+  name      String
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+
+  stations  Station[]
+  corridors Corridor[]
+
+  @@map("divisions")
+}
+
+model Station {
+  id         String   @id @default(uuid()) @db.Uuid
+  code       String   @unique
+  name       String
+  divisionId String   @db.Uuid
+  division   Division @relation(fields: [divisionId], references: [id])
+  latitude   Float
+  longitude  Float
+  createdAt  DateTime @default(now()) @db.Timestamptz(6)
+
+  corridorOrigins      Corridor[] @relation("CorridorOrigin")
+  corridorDestinations Corridor[] @relation("CorridorDest")
+
+  @@index([divisionId])
+  @@map("stations")
+}
+
+model Corridor {
+  id                   String   @id @default(uuid()) @db.Uuid
+  code                 String   @unique
+  name                 String
+  divisionId           String   @db.Uuid
+  division             Division @relation(fields: [divisionId], references: [id])
+  originStationId      String   @db.Uuid
+  destinationStationId String   @db.Uuid
+  originStation        Station  @relation("CorridorOrigin", fields: [originStationId], references: [id])
+  destinationStation   Station  @relation("CorridorDest", fields: [destinationStationId], references: [id])
+  totalLengthKm        Float
+  createdAt            DateTime @default(now()) @db.Timestamptz(6)
+
+  segments             CorridorSegment[]
+  trackResources       TrackResource[]
+  assets               Asset[]
+  maintenanceRequests  MaintenanceRequest[]
+  blockWindows         BlockWindow[]
+  trainMovements       TrainMovement[]
+
+  @@index([divisionId])
+  @@map("corridors")
+}
+
+model CorridorSegment {
+  id              String   @id @default(uuid()) @db.Uuid
+  corridorId      String   @db.Uuid
+  corridor        Corridor @relation(fields: [corridorId], references: [id])
+  sequenceNumber  Int
+  name            String
+  startChainageKm Float
+  endChainageKm   Float
+  createdAt       DateTime @default(now()) @db.Timestamptz(6)
+
+  assets              Asset[]
+  maintenanceRequests MaintenanceRequest[]
+  blockWindows        BlockWindow[]
+  trainMovements      TrainMovement[]
+
+  @@unique([corridorId, sequenceNumber])
+  @@index([corridorId])
+  @@map("corridor_segments")
+}
+
+model TrackResource {
+  id         String       @id @default(uuid()) @db.Uuid
+  code       String       @unique
+  name       String
+  type       ResourceType
+  corridorId String?      @db.Uuid
+  corridor   Corridor?    @relation(fields: [corridorId], references: [id])
+  capacity   Int          @default(1)
+  createdAt  DateTime     @default(now()) @db.Timestamptz(6)
+
+  requiredBy      MaintenanceRequestResource[]
+  trainMovements  TrainMovement[]
+
+  @@index([corridorId])
+  @@map("track_resources")
+}
+
+model Asset {
+  id                  String           @id @default(uuid()) @db.Uuid
+  code                String           @unique
+  name                String
+  assetType           String
+  corridorId          String           @db.Uuid
+  corridor            Corridor         @relation(fields: [corridorId], references: [id])
+  segmentId           String?          @db.Uuid
+  segment             CorridorSegment? @relation(fields: [segmentId], references: [id])
+  criticality         Criticality
+  installDate         DateTime?        @db.Timestamptz(6)
+  lastMaintenanceDate DateTime?        @db.Timestamptz(6)
+  createdAt           DateTime         @default(now()) @db.Timestamptz(6)
+  updatedAt           DateTime         @updatedAt
+
+  maintenanceRequests MaintenanceRequest[]
+
+  @@index([corridorId])
+  @@index([criticality])
+  @@map("assets")
+}
+
+// ──────────────────────────── MAINTENANCE ─────────────────────────────
+
+model MaintenanceRequest {
+  id                       String            @id @default(uuid()) @db.Uuid
+  requestNumber            String            @unique
+  department               Department
+  assetId                  String            @db.Uuid
+  asset                    Asset             @relation(fields: [assetId], references: [id])
+  corridorId               String            @db.Uuid
+  corridor                 Corridor          @relation(fields: [corridorId], references: [id])
+  segmentId                String?           @db.Uuid
+  segment                  CorridorSegment?  @relation(fields: [segmentId], references: [id])
+  workType                 WorkType
+  description              String
+  criticality               Criticality
+  urgency                  Criticality
+  dueDate                  DateTime          @db.Timestamptz(6)
+  estimatedDurationMinutes Int
+  requiredIsolation        IsolationType     @default(NONE)
+  requiredPower            PowerRequirement  @default(NONE)
+  status                   MaintenanceStatus @default(OPEN)
+  requestedById            String?           @db.Uuid
+  scenarioId               String            @db.Uuid
+  scenario                 PlanningScenario  @relation(fields: [scenarioId], references: [id])
+  createdAt                DateTime          @default(now()) @db.Timestamptz(6)
+  updatedAt                DateTime          @updatedAt
+
+  requiredResources  MaintenanceRequestResource[]
+  predecessorLinks   RequestDependency[]           @relation("Successor")
+  successorLinks     RequestDependency[]           @relation("Predecessor")
+  planTasks          PlanTask[]
+
+  @@index([corridorId])
+  @@index([status])
+  @@index([dueDate])
+  @@index([scenarioId])
+  @@map("maintenance_requests")
+}
+
+model MaintenanceRequestResource {
+  id                   String              @id @default(uuid()) @db.Uuid
+  maintenanceRequestId String              @db.Uuid
+  maintenanceRequest   MaintenanceRequest  @relation(fields: [maintenanceRequestId], references: [id])
+  trackResourceId      String              @db.Uuid
+  trackResource        TrackResource       @relation(fields: [trackResourceId], references: [id])
+  quantity             Int                 @default(1)
+
+  @@unique([maintenanceRequestId, trackResourceId])
+  @@map("maintenance_request_resources")
+}
+
+model RequestDependency {
+  id            String              @id @default(uuid()) @db.Uuid
+  predecessorId String              @db.Uuid
+  predecessor   MaintenanceRequest  @relation("Predecessor", fields: [predecessorId], references: [id])
+  successorId   String              @db.Uuid
+  successor     MaintenanceRequest  @relation("Successor", fields: [successorId], references: [id])
+  createdAt     DateTime            @default(now()) @db.Timestamptz(6)
+
+  @@unique([predecessorId, successorId])
+  @@map("request_dependencies")
+}
+
+model TaskCompatibilityRule {
+  id         String      @id @default(uuid()) @db.Uuid
+  workTypeA  WorkType
+  workTypeB  WorkType
+  department Department?
+  compatible Boolean
+  reason     String?
+  createdAt  DateTime    @default(now()) @db.Timestamptz(6)
+
+  @@unique([workTypeA, workTypeB, department])
+  @@map("task_compatibility_rules")
+}
+
+// ───────────────────────────── PLANNING ───────────────────────────────
+
+model BlockWindow {
+  id                      String             @id @default(uuid()) @db.Uuid
+  corridorId              String             @db.Uuid
+  corridor                Corridor           @relation(fields: [corridorId], references: [id])
+  segmentId               String?            @db.Uuid
+  segment                 CorridorSegment?   @relation(fields: [segmentId], references: [id])
+  startTime               DateTime           @db.Timestamptz(6)
+  endTime                 DateTime           @db.Timestamptz(6)
+  durationMinutes         Int
+  permittedDepartments    Department[]
+  allowsIsolationTypes    IsolationType[]
+  allowsPowerTypes        PowerRequirement[]
+  maxConcurrentResources  Int?
+  operationalRestrictions String?
+  scenarioId              String             @db.Uuid
+  scenario                PlanningScenario   @relation(fields: [scenarioId], references: [id])
+  createdAt               DateTime           @default(now()) @db.Timestamptz(6)
+
+  planBlocks PlanBlock[]
+
+  @@index([corridorId])
+  @@index([scenarioId])
+  @@index([startTime, endTime])
+  @@map("block_windows")
+}
+
+model PlanningScenario {
+  id            String   @id @default(uuid()) @db.Uuid
+  name          String
+  seed          Int
+  description   String?
+  divisionId    String?  @db.Uuid
+  configVersion String
+  generatedAt   DateTime @db.Timestamptz(6)
+  createdAt     DateTime @default(now()) @db.Timestamptz(6)
+
+  maintenanceRequests MaintenanceRequest[]
+  blockWindows        BlockWindow[]
+  trainMovements      TrainMovement[]
+  scenarioEvents      ScenarioEvent[]
+  planningRuns        PlanningRun[]
+  plans               Plan[]
+
+  @@index([seed])
+  @@map("planning_scenarios")
+}
+
+model PlanningRun {
+  id             String            @id @default(uuid()) @db.Uuid
+  scenarioId     String            @db.Uuid
+  scenario       PlanningScenario  @relation(fields: [scenarioId], references: [id])
+  strategy       StrategyType
+  status         PlanningRunStatus @default(PENDING)
+  requestedById  String?           @db.Uuid
+  startedAt      DateTime?         @db.Timestamptz(6)
+  finishedAt     DateTime?         @db.Timestamptz(6)
+  solverStatus   String?
+  objectiveValue Float?
+  resultPlanId   String?           @unique @db.Uuid
+  resultPlan     Plan?             @relation(fields: [resultPlanId], references: [id])
+  errorMessage   String?
+  inputSnapshot  Json
+  createdAt      DateTime          @default(now()) @db.Timestamptz(6)
+
+  @@index([scenarioId, strategy])
+  @@index([status])
+  @@map("planning_runs")
+}
+
+model Plan {
+  id                String           @id @default(uuid()) @db.Uuid
+  scenarioId        String           @db.Uuid
+  scenario          PlanningScenario @relation(fields: [scenarioId], references: [id])
+  strategy          StrategyType
+  status            PlanStatus       @default(DRAFT)
+  objectiveValue    Float?
+  solverStatus      String?
+  createdAt         DateTime         @default(now()) @db.Timestamptz(6)
+  updatedAt         DateTime         @updatedAt
+
+  revisions   PlanRevision[]
+  planningRun PlanningRun?
+
+  @@index([scenarioId])
+  @@index([status])
+  @@map("plans")
+}
+
+model PlanRevision {
+  id               String    @id @default(uuid()) @db.Uuid
+  planId           String    @db.Uuid
+  plan             Plan      @relation(fields: [planId], references: [id])
+  revisionNumber   Int
+  isImmutable      Boolean   @default(false)
+  parentRevisionId String?   @db.Uuid
+  createdById      String?   @db.Uuid
+  createdAt        DateTime  @default(now()) @db.Timestamptz(6)
+
+  blocks            PlanBlock[]
+  tasks             PlanTask[]
+  validationRuns    ValidationRun[]
+  simulationRuns    SimulationRun[]
+  approvalDecisions ApprovalDecision[]
+
+  @@unique([planId, revisionNumber])
+  @@map("plan_revisions")
+}
+
+model PlanBlock {
+  id             String       @id @default(uuid()) @db.Uuid
+  planRevisionId String       @db.Uuid
+  planRevision   PlanRevision @relation(fields: [planRevisionId], references: [id])
+  blockWindowId  String       @db.Uuid
+  blockWindow    BlockWindow  @relation(fields: [blockWindowId], references: [id])
+  corridorId     String       @db.Uuid
+  startTime      DateTime     @db.Timestamptz(6)
+  endTime        DateTime     @db.Timestamptz(6)
+  department     Department?
+  isBundle       Boolean      @default(false)
+  createdAt      DateTime     @default(now()) @db.Timestamptz(6)
+
+  tasks PlanTask[]
+
+  @@index([planRevisionId])
+  @@index([blockWindowId])
+  @@map("plan_blocks")
+}
+
+/// Every task considered in a revision gets one PlanTask row - scheduled
+/// or not - which is what makes both WHY SCHEDULED and WHY NOT SCHEDULED
+/// explainability answerable from a single table.
+model PlanTask {
+  id                   String                    @id @default(uuid()) @db.Uuid
+  planRevisionId       String                    @db.Uuid
+  planRevision         PlanRevision              @relation(fields: [planRevisionId], references: [id])
+  planBlockId          String?                   @db.Uuid
+  planBlock            PlanBlock?                @relation(fields: [planBlockId], references: [id])
+  maintenanceRequestId String                    @db.Uuid
+  maintenanceRequest   MaintenanceRequest        @relation(fields: [maintenanceRequestId], references: [id])
+  scheduled            Boolean
+  priorityScore        Float
+  priorityBreakdown    Json
+  reasons              Json
+  rejectionReason      CandidateRejectionReason?
+  createdAt            DateTime                  @default(now()) @db.Timestamptz(6)
+
+  @@unique([planRevisionId, maintenanceRequestId])
+  @@index([planBlockId])
+  @@map("plan_tasks")
+}
+
+// ──────────────────────────── OPERATIONS ──────────────────────────────
+
+model TrainMovement {
+  id              String           @id @default(uuid()) @db.Uuid
+  trainNumber     String
+  trainType       TrainType
+  corridorId      String           @db.Uuid
+  corridor        Corridor         @relation(fields: [corridorId], references: [id])
+  segmentId       String?          @db.Uuid
+  segment         CorridorSegment? @relation(fields: [segmentId], references: [id])
+  trackResourceId String?          @db.Uuid
+  trackResource   TrackResource?   @relation(fields: [trackResourceId], references: [id])
+  scheduledStart  DateTime         @db.Timestamptz(6)
+  scheduledEnd    DateTime         @db.Timestamptz(6)
+  priority        Int
+  scenarioId      String           @db.Uuid
+  scenario        PlanningScenario @relation(fields: [scenarioId], references: [id])
+  createdAt       DateTime         @default(now()) @db.Timestamptz(6)
+
+  @@index([corridorId, scheduledStart, scheduledEnd])
+  @@index([scenarioId])
+  @@map("train_movements")
+}
+
+model ScenarioEvent {
+  id         String               @id @default(uuid()) @db.Uuid
+  scenarioId String               @db.Uuid
+  scenario   PlanningScenario     @relation(fields: [scenarioId], references: [id])
+  eventType  ScenarioEventType
+  source     ScenarioEventSource  @default(SYNTHETIC)
+  payload    Json
+  appliedAt  DateTime?            @db.Timestamptz(6)
+  createdAt  DateTime             @default(now()) @db.Timestamptz(6)
+
+  @@index([scenarioId])
+  @@map("scenario_events")
+}
+
+/// Every string in `assumptions` MUST be prefixed with
+/// "SIMULATION ASSUMPTION — NOT A PRODUCTION RAILWAY RULE" - enforced by
+/// the simulator service, not just documented here.
+model SimulationRun {
+  id                 String       @id @default(uuid()) @db.Uuid
+  planRevisionId     String       @db.Uuid
+  planRevision       PlanRevision @relation(fields: [planRevisionId], references: [id])
+  scenarioEventId    String?      @db.Uuid
+  impactedTrainCount Int
+  totalDelayMinutes  Int
+  affectedMovements  Json
+  conflicts          Json
+  blockUtilization   Json
+  assumptions        Json
+  createdAt          DateTime     @default(now()) @db.Timestamptz(6)
+
+  @@index([planRevisionId])
+  @@map("simulation_runs")
+}
+
+// ─────────────────────── VALIDATION / GOVERNANCE ──────────────────────
+
+model ValidationRun {
+  id             String           @id @default(uuid()) @db.Uuid
+  planRevisionId String           @db.Uuid
+  planRevision   PlanRevision     @relation(fields: [planRevisionId], references: [id])
+  status         ValidationStatus
+  violations     Json
+  createdAt      DateTime         @default(now()) @db.Timestamptz(6)
+
+  @@index([planRevisionId])
+  @@map("validation_runs")
+}
+
+model ApprovalDecision {
+  id             String               @id @default(uuid()) @db.Uuid
+  planRevisionId String               @db.Uuid
+  planRevision   PlanRevision         @relation(fields: [planRevisionId], references: [id])
+  decidedById    String               @db.Uuid
+  decidedBy      User                 @relation(fields: [decidedById], references: [id])
+  decision       ApprovalDecisionType
+  comment        String?
+  createdAt      DateTime             @default(now()) @db.Timestamptz(6)
+
+  @@index([planRevisionId])
+  @@map("approval_decisions")
+}
+
+model User {
+  id           String   @id @default(uuid()) @db.Uuid
+  email        String   @unique
+  name         String
+  passwordHash String
+  createdAt    DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt    DateTime @updatedAt
+
+  roles     RoleAssignment[]
+  approvals ApprovalDecision[]
+
+  @@map("users")
+}
+
+model RoleAssignment {
+  id         String   @id @default(uuid()) @db.Uuid
+  userId     String   @db.Uuid
+  user       User     @relation(fields: [userId], references: [id])
+  role       Role
+  divisionId String?  @db.Uuid
+  createdAt  DateTime @default(now()) @db.Timestamptz(6)
+
+  @@unique([userId, role, divisionId])
+  @@map("role_assignments")
+}
+
+model AuditEvent {
+  id            String   @id @default(uuid()) @db.Uuid
+  actorUserId   String?  @db.Uuid
+  correlationId String?
+  action        String
+  entityType    String
+  entityId      String
+  before        Json?
+  after         Json?
+  metadata      Json?
+  createdAt     DateTime @default(now()) @db.Timestamptz(6)
+
+  @@index([entityType, entityId])
+  @@index([createdAt])
+  @@map("audit_events")
+}

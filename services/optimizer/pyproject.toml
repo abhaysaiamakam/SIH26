@@ -1,0 +1,12 @@
+[project]
+name = "railopt-optimizer"
+version = "0.1.0"
+description = "RAILOPT AI candidate generation and CP-SAT optimization pipeline"
+requires-python = ">=3.11"
+dependencies = [
+    "ortools>=9.10",
+    "pydantic>=2.7",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "priorityWeight": 1.0,
+  "bundleBonusPerExtraTask": 8,
+  "assetAvailabilityPoints": { "LOW": 2, "MEDIUM": 5, "HIGH": 10, "CRITICAL": 18 },
+  "blockUtilizationWeight": 10,
+  "delayMinutePenalty": 0.5,
+  "fragmentationPenaltyPerBlock": 3,
+  "blockUsedPenalty": 2
+}

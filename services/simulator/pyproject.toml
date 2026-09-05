@@ -1,0 +1,11 @@
+[project]
+name = "railopt-simulator"
+version = "0.1.0"
+description = "RAILOPT AI deterministic traffic impact simulator"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.7",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

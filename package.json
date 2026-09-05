@@ -1,0 +1,24 @@
+{
+  "name": "railopt-ai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "RAILOPT AI - AI-powered automatic block planning prototype for SIH26027",
+  "scripts": {
+    "build": "pnpm -r --if-present run build",
+    "lint": "pnpm -r --if-present run lint",
+    "typecheck": "pnpm -r --if-present run typecheck",
+    "test": "pnpm -r --if-present run test",
+    "dev:api": "pnpm --filter @railopt/api run start:dev",
+    "dev:web": "pnpm --filter @railopt/web run dev",
+    "prisma:generate": "pnpm --filter @railopt/api run prisma:generate",
+    "prisma:migrate": "pnpm --filter @railopt/api run prisma:migrate",
+    "seed": "pnpm --filter @railopt/data-synthetic run generate"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  },
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=20"
+  }
+}

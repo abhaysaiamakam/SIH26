@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "assetCriticalityPoints": { "LOW": 5, "MEDIUM": 12, "HIGH": 20, "CRITICAL": 30 },
+  "maintenanceCriticalityPoints": { "LOW": 5, "MEDIUM": 12, "HIGH": 20, "CRITICAL": 30 },
+  "urgencyPoints": { "LOW": 5, "MEDIUM": 10, "HIGH": 16, "CRITICAL": 22 },
+  "overdue": { "baseBonus": 10, "perDayBonus": 1, "maxBonus": 20 },
+  "dueSoon": {
+    "thresholds": [
+      { "withinDays": 3, "bonus": 12 },
+      { "withinDays": 7, "bonus": 8 },
+      { "withinDays": 14, "bonus": 4 }
+    ]
+  }
+}

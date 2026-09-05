@@ -1,0 +1,8 @@
+{
+  "version": "v1",
+  "numSearchWorkers": 1,
+  "randomSeed": 42,
+  "timeLimitSeconds": 20,
+  "planningHorizonDays": 30,
+  "dueSoonWindowDays": 14
+}

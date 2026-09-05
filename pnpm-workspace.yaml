@@ -1,0 +1,8 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+  - "data/synthetic"
+allowBuilds:
+  '@prisma/engines': true
+  prisma: true
+  '@prisma/client': true

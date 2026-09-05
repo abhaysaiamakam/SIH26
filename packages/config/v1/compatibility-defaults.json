@@ -1,0 +1,19 @@
+{
+  "version": "v1",
+  "sameDepartmentDefaultCompatible": true,
+  "crossDepartmentDefaultCompatible": false,
+  "crossDepartmentAllowList": [
+    { "workTypeA": "TRACK_RENEWAL", "workTypeB": "OHE_MAINTENANCE", "reason": "Track possession commonly coincides with OHE isolation windows" },
+    { "workTypeA": "RAIL_GRINDING", "workTypeB": "OHE_MAINTENANCE", "reason": "Rail grinding requires track possession compatible with OHE isolation" },
+    { "workTypeA": "POINTS_CROSSING_MAINTENANCE", "workTypeB": "INTERLOCKING_UPGRADE", "reason": "Points maintenance and interlocking upgrades both require track possession and signal isolation" },
+    { "workTypeA": "GENERAL_INSPECTION", "workTypeB": "OHE_MAINTENANCE", "reason": "Non-intrusive inspection can run alongside OHE isolation" },
+    { "workTypeA": "GENERAL_INSPECTION", "workTypeB": "SIGNAL_MAINTENANCE", "reason": "Non-intrusive inspection can run alongside signal maintenance" },
+    { "workTypeA": "GENERAL_INSPECTION", "workTypeB": "TRACK_RENEWAL", "reason": "Non-intrusive inspection can run alongside track renewal" }
+  ],
+  "sameDepartmentIncompatiblePairs": [
+    { "workTypeA": "BALLAST_CLEANING", "workTypeB": "TRACK_RENEWAL", "reason": "Both require exclusive use of heavy on-track machinery on the same segment" }
+  ],
+  "hardIncompatiblePairs": [
+    { "workTypeA": "BRIDGE_INSPECTION", "workTypeB": "BALLAST_CLEANING", "reason": "Structural inspection cannot safely proceed alongside heavy ballast machinery operation" }
+  ]
+}
